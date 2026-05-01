@@ -61,7 +61,7 @@ padding:60px 24px;
 .hero h1{
 font-family:'Cormorant Garamond',serif;
 font-size:clamp(48px,10vw,90px);
-line-height:.85;
+line-height:1;
 margin:0;
 }
 
@@ -79,13 +79,16 @@ border:1px solid var(--lamonte);
 letter-spacing:3px;
 font-size:11px;
 text-transform:uppercase;
+cursor:pointer;
+text-decoration:none;
+color:var(--lanuit);
 }
+
+/* IMAGE */
 
 .hero-img{
 min-height:420px;
-background:
-url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80')
-center/cover;
+background:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80') center/cover;
 }
 
 /* PERSONAS */
@@ -149,9 +152,26 @@ background:transparent;
 color:white;
 }
 
+input::placeholder{color:rgba(255,255,255,.6)}
+input:focus{outline:none;border-color:white}
+
+.dawn .button{
+background:transparent;
+border:1px solid white;
+color:white;
+margin-top:16px;
+display:block;
+width:fit-content;
+}
+
+/* FOOTER */
+
 .footer{
 padding:40px 24px;
 border-top:1px solid rgba(0,0,0,.08);
+font-size:13px;
+color:var(--lanuit);
+opacity:.7;
 }
 
 @media(min-width:760px){
@@ -180,7 +200,6 @@ border-top:1px solid rgba(0,0,0,.08);
 
 <div class="hero">
 <div>
-<div class="wordmark">belle.</div>
 <h1>The look was never the price tag.</h1>
 <p class="sub">The dawn of disciplined taste.</p>
 <div class="button">THIS WEEK’S STEAL DROP</div>
@@ -193,12 +212,12 @@ border-top:1px solid rgba(0,0,0,.08);
 <div class="personas">
 <h2>The Personas</h2>
 <div class="grid">
-<div class="card"><h3>SLOANE</h3><p>Earned her seat</p></div>
-<div class="card"><h3>SOLEIL</h3><p>Dressed since birth</p></div>
-<div class="card"><h3>JADE</h3><p>Sets the trend</p></div>
-<div class="card"><h3>VIVIENNE</h3><p>Arrived</p></div>
-<div class="card"><h3>MAEGAN</h3><p>Always correct</p></div>
-<div class="card"><h3>NOOR</h3><p>Never compromises</p></div>
+<div class="card"><h3>SLOANE</h3><p>Quiet luxury. Never loud about it.</p></div>
+<div class="card"><h3>SOLEIL</h3><p>Effortless. Always has been.</p></div>
+<div class="card"><h3>JADE</h3><p>Dark. Precise. Ahead of you.</p></div>
+<div class="card"><h3>VIVIENNE</h3><p>She arrived. You noticed.</p></div>
+<div class="card"><h3>MAEGAN</h3><p>Modest. Never forgettable.</p></div>
+<div class="card"><h3>NOOR</h3><p>Light. The expensive kind.</p></div>
 </div>
 </div>
 
