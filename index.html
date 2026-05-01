@@ -4,486 +4,427 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>belle. by Pretty Little Steals</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
+:root{
+  --lair:#F5F0E8;
+  --cream:#FAF6F0;
+  --lanuit:#1A1A1A;
+  --gold:#C9A84C;
+  --soleil:#E8C4B8;
+  --rose:#C97B8A;
+  --ll:#2D4A3E;
+  --miranda:#7D2027;
 
-:root {
-  --lair:    #F5F0E8;
-  --lanuit:  #1A1A1A;
-  --lamonte: #C9A84C;
-  --cream:   #FAF6F0;
-  --soleil:  #E8C4B8;
-  --rose:    #C97B8A;
-  --ll:      #2D4A3E;
-  --miranda: #7D2027;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--lair);
-  color: var(--lanuit);
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
+  --s1:8px;
+  --s2:13px;
+  --s3:21px;
+  --s4:34px;
+  --s5:55px;
+  --s6:89px;
+  --s7:144px;
 }
 
-/* NAV */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px 56px;
-  background: var(--lair);
-  border-bottom: 1px solid rgba(26,26,26,.07);
-}
-.wordmark {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 300;
-  letter-spacing: .08em;
-  color: var(--lanuit);
-  text-decoration: none;
-}
-.nav-links {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-}
-.nav-links a {
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--lanuit);
-  text-decoration: none;
-  opacity: .55;
-  transition: opacity .2s;
-}
-.nav-links a:hover { opacity: 1; }
+*{box-sizing:border-box}
 
-/* HERO */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-  padding-top: 71px;
-}
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 64px;
-  background: var(--lair);
-}
-.hero-eyebrow {
-  font-size: 9px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  opacity: .4;
-  margin-bottom: 32px;
-}
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(56px, 5.5vw, 92px);
-  font-weight: 300;
-  line-height: 1.0;
-  letter-spacing: -.01em;
-  margin-bottom: 32px;
-}
-.hero-sub {
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: .5;
-  margin-bottom: 56px;
-}
-.btn {
-  display: inline-block;
-  padding: 15px 32px;
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  border: 1px solid var(--lanuit);
-  width: fit-content;
-  transition: all .25s;
-  background: var(--lanuit);
-  color: var(--lair);
-}
-.btn:hover {
-  background: var(--lamonte);
-  border-color: var(--lamonte);
-  color: var(--lanuit);
-}
-.hero-visual {
-  position: relative;
-  background: var(--soleil);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: hidden;
-}
-.hero-visual-inner {
-  width: 100%;
-  height: 100%;
-  background: var(--soleil);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 40px;
-  text-align: center;
-}
-.belle-seal {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 120px;
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(26,26,26,.12);
-  line-height: 1;
-  margin-bottom: 24px;
-  letter-spacing: -.02em;
-}
-.hero-campaign {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(28px, 3vw, 44px);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--lanuit);
-  opacity: .85;
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-.hero-campaign-sub {
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: .45;
+body{
+  margin:0;
+  background:var(--lair);
+  color:var(--lanuit);
+  font-family:Jost,sans-serif;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* GOLD DIVIDER */
-.rule {
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--lamonte), transparent);
-  margin: 0 56px;
+p{
+  color:rgba(26,26,26,.62);
+  line-height:1.65;
 }
 
-/* PERSONAS */
-.personas {
-  background: var(--cream);
-  padding: 100px 56px;
-}
-.label {
-  font-size: 9px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  opacity: .4;
-  margin-bottom: 18px;
-}
-.section-h {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(38px, 4vw, 60px);
-  font-weight: 300;
-  line-height: 1.05;
-  margin-bottom: 56px;
-}
-.persona-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--lamonte);
-  border-left: 1px solid var(--lamonte);
-}
-.persona-card {
-  border-right: 1px solid var(--lamonte);
-  border-bottom: 1px solid var(--lamonte);
-  padding: 40px 32px;
-  background: var(--cream);
-  transition: background .25s;
-}
-.persona-card:hover { background: var(--lair); }
-.p-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30px;
-  font-weight: 400;
-  letter-spacing: .03em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-  color: var(--lanuit);
-}
-.p-line {
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  line-height: 1.8;
-  opacity: .55;
-  text-transform: uppercase;
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:20;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:21px 34px;
+  background:rgba(245,240,232,.92);
+  border-bottom:1px solid rgba(26,26,26,.08);
+  backdrop-filter:blur(13px);
 }
 
-/* LL APPROVED */
-.ll {
-  background: var(--ll);
-  color: white;
-  padding: 100px 56px;
-}
-.ll .label { color: rgba(255,255,255,.4); }
-.ll .section-h { color: white; }
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.15);
-  margin-top: 48px;
-}
-.review-card {
-  background: var(--ll);
-  padding: 40px 32px;
-}
-.r-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.4;
-  margin-bottom: 24px;
-  color: rgba(255,255,255,.9);
-}
-.r-meta {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--lamonte);
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:31px;
+  font-weight:300;
+  letter-spacing:.045em;
 }
 
-/* MANIFESTO */
-.manifesto {
-  background: var(--lanuit);
-  padding: 80px 56px;
-  text-align: center;
-}
-.manifesto p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--lair);
-  line-height: 1.5;
-  opacity: .9;
-}
-.manifesto span { color: var(--lamonte); font-style: normal; }
-
-/* DAWN */
-.dawn {
-  background: var(--miranda);
-  color: white;
-  padding: 100px 56px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-.dawn .label { color: rgba(255,255,255,.38); }
-.dawn-h {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 5vw, 76px);
-  font-weight: 300;
-  line-height: 1.0;
-  margin-bottom: 24px;
-}
-.dawn-sub {
-  font-size: 12px;
-  letter-spacing: 2px;
-  line-height: 2;
-  opacity: .65;
-  text-transform: uppercase;
-}
-.dawn-form { display: flex; flex-direction: column; gap: 20px; }
-.dawn-form input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,.35);
-  color: white;
-  font-family: 'Jost', sans-serif;
-  font-size: 13px;
-  letter-spacing: 1px;
-  padding: 14px 0;
-  outline: none;
-  transition: border-color .2s;
-}
-.dawn-form input::placeholder {
-  color: rgba(255,255,255,.35);
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-.dawn-form input:focus { border-bottom-color: white; }
-.btn-ghost {
-  display: inline-block;
-  padding: 15px 32px;
-  background: transparent;
-  color: white;
-  border: 1px solid rgba(255,255,255,.4);
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  width: fit-content;
-  transition: all .25s;
-}
-.btn-ghost:hover {
-  background: rgba(255,255,255,.08);
-  border-color: white;
+.navlinks{
+  display:flex;
+  gap:34px;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(26,26,26,.48);
 }
 
-/* FOOTER */
-footer {
-  background: var(--lair);
-  border-top: 1px solid rgba(26,26,26,.07);
-  padding: 48px 56px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-.f-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 300;
-  letter-spacing: .06em;
-  margin-bottom: 8px;
-}
-.f-sub {
-  font-size: 9px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  opacity: .38;
-  margin-bottom: 16px;
-}
-.f-copy {
-  font-size: 9px;
-  letter-spacing: 1px;
-  opacity: .28;
-}
-.f-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-}
-.f-links a {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--lanuit);
-  text-decoration: none;
-  opacity: .4;
-  transition: opacity .2s;
-}
-.f-links a:hover { opacity: 1; }
-
-/* MOBILE */
-@media (max-width: 768px) {
-  nav { padding: 18px 24px; }
-  .nav-links { display: none; }
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-text { padding: 60px 28px; }
-  .hero-visual { min-height: 60vw; }
-  .belle-seal { font-size: 72px; }
-  .personas, .ll, .dawn, .manifesto { padding: 72px 24px; }
-  .persona-grid { grid-template-columns: repeat(2, 1fr); }
-  .review-grid { grid-template-columns: 1fr; }
-  .dawn { grid-template-columns: 1fr; gap: 48px; }
-  footer { flex-direction: column; align-items: flex-start; gap: 32px; padding: 40px 24px; }
-  .rule { margin: 0 24px; }
+.hero{
+  min-height:100vh;
+  padding:144px 34px 89px;
 }
 
+.hero-inner{
+  max-width:1180px;
+  margin:0 auto;
+}
+
+.kicker{
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(26,26,26,.45);
+  margin-bottom:34px;
+}
+
+h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(72px,8vw,144px);
+  line-height:.92;
+  font-weight:300;
+  letter-spacing:-.055em;
+  margin:0;
+  max-width:8.6ch;
+}
+
+.sub{
+  margin-top:21px;
+  max-width:377px;
+  font-size:17px;
+}
+
+.campaign{
+  margin-top:55px;
+  padding-top:21px;
+  border-top:1px solid rgba(201,168,76,.28);
+  max-width:377px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+  font-weight:300;
+  line-height:1;
+  letter-spacing:-.02em;
+}
+
+.cta{
+  display:inline-block;
+  margin-top:34px;
+  padding:16px 0 13px;
+  border-bottom:1px solid rgba(201,168,76,.75);
+  color:var(--lanuit);
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.hero-image{
+  margin-top:55px;
+  height:55vh;
+  min-height:377px;
+  border:1px solid rgba(201,168,76,.22);
+  background:
+    linear-gradient(rgba(245,240,232,.08),rgba(245,240,232,.18)),
+    url("https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80") center/cover;
+}
+
+.section{
+  padding:89px 34px;
+}
+
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+}
+
+.label{
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(26,26,26,.45);
+  margin-bottom:21px;
+}
+
+h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(48px,6vw,89px);
+  line-height:.95;
+  font-weight:300;
+  letter-spacing:-.04em;
+  margin:0 0 55px;
+}
+
+.personas{
+  background:var(--cream);
+}
+
+.persona-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  border-top:1px solid rgba(201,168,76,.28);
+  border-left:1px solid rgba(201,168,76,.28);
+}
+
+.persona{
+  min-height:233px;
+  padding:34px 21px;
+  border-right:1px solid rgba(201,168,76,.28);
+  border-bottom:1px solid rgba(201,168,76,.28);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.persona h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:31px;
+  font-weight:300;
+  letter-spacing:.03em;
+  margin:0;
+}
+
+.persona p{
+  margin:0;
+  font-size:13px;
+}
+
+.receipt{
+  background:var(--lair);
+}
+
+.receipt-inner{
+  display:grid;
+  grid-template-columns:.618fr 1fr;
+  gap:89px;
+  align-items:start;
+}
+
+.badge{
+  width:233px;
+  height:233px;
+  border:1px solid rgba(45,74,62,.45);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:var(--ll);
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+  font-style:italic;
+  line-height:.95;
+  letter-spacing:-.02em;
+}
+
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:21px;
+}
+
+.review{
+  padding:34px;
+  background:var(--cream);
+  border:1px solid rgba(45,74,62,.14);
+}
+
+.review blockquote{
+  margin:0 0 21px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:29px;
+  line-height:1.05;
+  font-weight:300;
+}
+
+.review p{
+  margin:0;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.window{
+  background:var(--cream);
+}
+
+.window-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:89px;
+  align-items:end;
+}
+
+.window h2{
+  color:var(--miranda);
+}
+
+input{
+  width:100%;
+  padding:18px;
+  border:1px solid rgba(125,32,39,.35);
+  background:transparent;
+  font:inherit;
+  color:var(--lanuit);
+}
+
+input::placeholder{
+  color:rgba(26,26,26,.45);
+}
+
+.window .cta{
+  color:var(--miranda);
+  border-bottom-color:var(--miranda);
+}
+
+.footer{
+  padding:55px 34px;
+  border-top:1px solid rgba(201,168,76,.25);
+}
+
+.footer p{
+  margin:8px 0;
+  font-size:13px;
+}
+
+@media(max-width:900px){
+  .navlinks{display:none}
+
+  .hero{
+    padding-top:110px;
+  }
+
+  h1{
+    font-size:76px;
+  }
+
+  .hero-image{
+    height:466px;
+  }
+
+  .persona-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .receipt-inner,
+  .window-inner{
+    grid-template-columns:1fr;
+    gap:55px;
+  }
+
+  .review-grid{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<nav>
-  <a class="wordmark" href="#">belle.</a>
-  <ul class="nav-links">
-    <li><a href="#personas">The Personas</a></li>
-    <li><a href="#steals">LL Approved</a></li>
-    <li><a href="#window">The Window</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
+<nav class="nav">
+  <div class="logo">belle.</div>
+  <div class="navlinks">
+    <div>The Personas</div>
+    <div>LL Approved</div>
+    <div>The Window</div>
+    <div>About</div>
+  </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-text">
-    <p class="hero-eyebrow">Pretty Little Steals &nbsp;&#10022;&nbsp; by belle.</p>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">belle. by Pretty Little Steals</div>
+
     <h1>The look was never the price tag.</h1>
-    <p class="hero-sub">The dawn of disciplined taste.</p>
-    <a class="btn" href="#steals">This Week&#39;s Steal Drop</a>
+
+    <p class="sub">The dawn of disciplined taste.</p>
+
+    <div class="campaign">The Devil Wears belle.</div>
+
+    <p class="sub">The devil subscribes to Pretty Little Steals.</p>
+
+    <a class="cta">Enter The Dawn Window</a>
+
+    <div class="hero-image"></div>
   </div>
-  <div class="hero-visual">
-    <div class="hero-visual-inner">
-      <div class="belle-seal">b.</div>
-      <p class="hero-campaign">The Devil Wears belle.</p>
-      <p class="hero-campaign-sub">Your little secret for looking expensive.</p>
+</header>
+
+<section class="section personas">
+  <div class="wrap">
+    <div class="label">The Personas</div>
+    <h2>Outfit formulas, built for her.</h2>
+
+    <div class="persona-grid">
+      <div class="persona"><h3>Sloane</h3><p>Quiet luxury. Never loud about it.</p></div>
+      <div class="persona"><h3>Soleil</h3><p>Effortless. Always has been.</p></div>
+      <div class="persona"><h3>Jade</h3><p>Dark. Precise. Ahead of you.</p></div>
+      <div class="persona"><h3>Vivienne</h3><p>She arrived. You noticed.</p></div>
+      <div class="persona"><h3>Maegan</h3><p>Modest. Never forgettable.</p></div>
+      <div class="persona"><h3>Noor</h3><p>Light. The expensive kind.</p></div>
     </div>
   </div>
 </section>
 
-<div class="rule"></div>
+<section class="section receipt">
+  <div class="wrap receipt-inner">
+    <div>
+      <div class="label">The Receipt</div>
+      <div class="badge">LL<br>Approved.</div>
+    </div>
 
-<section class="personas" id="personas">
-  <p class="label">The Women</p>
-  <h2 class="section-h">Six personas.<br>One standard.</h2>
-  <div class="persona-grid">
-    <div class="persona-card"><div class="p-name">Sloane</div><p class="p-line">Quiet luxury.<br>Never loud about it.</p></div>
-    <div class="persona-card"><div class="p-name">Soleil</div><p class="p-line">Effortless.<br>Always has been.</p></div>
-    <div class="persona-card"><div class="p-name">Jade</div><p class="p-line">Dark. Precise.<br>Ahead of you.</p></div>
-    <div class="persona-card"><div class="p-name">Vivienne</div><p class="p-line">She arrived.<br>You noticed.</p></div>
-    <div class="persona-card"><div class="p-name">Maegan</div><p class="p-line">Modest.<br>Never forgettable.</p></div>
-    <div class="persona-card"><div class="p-name">Noor</div><p class="p-line">Light.<br>The expensive kind.</p></div>
+    <div>
+      <h2>The steal. The proof. The standard.</h2>
+
+      <div class="review-grid">
+        <div class="review">
+          <blockquote>“Found the exact same blazer for $34.”</blockquote>
+          <p>Sloane / saved $216</p>
+        </div>
+
+        <div class="review">
+          <blockquote>“The bag looked better in person.”</blockquote>
+          <p>Soleil / saved $142</p>
+        </div>
+
+        <div class="review">
+          <blockquote>“Same line. Better fabric.”</blockquote>
+          <p>Vivienne / saved $380</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="ll" id="steals">
-  <p class="label">Community Verified</p>
-  <h2 class="section-h">LL Approved.</h2>
-  <div class="review-grid">
-    <div class="review-card"><p class="r-quote">&ldquo;Found the exact same blazer for $34.&rdquo;</p><p class="r-meta">Sloane &nbsp;&middot;&nbsp; saved $216</p></div>
-    <div class="review-card"><p class="r-quote">&ldquo;The bag looked better in person.&rdquo;</p><p class="r-meta">Soleil &nbsp;&middot;&nbsp; saved $142</p></div>
-    <div class="review-card"><p class="r-quote">&ldquo;Same line. Better fabric.&rdquo;</p><p class="r-meta">Vivienne &nbsp;&middot;&nbsp; saved $380</p></div>
+<section class="section window">
+  <div class="wrap window-inner">
+    <div>
+      <div class="label">Every Tuesday. 5:55am CT.</div>
+      <h2>The Dawn Window</h2>
+      <p>24 hours. One drop. The devil gets first access. So do you.</p>
+    </div>
+
+    <div>
+      <input placeholder="your email. nothing else.">
+      <a class="cta">I want first access.</a>
+    </div>
   </div>
 </section>
 
-<div class="manifesto">
-  <p>The devil subscribes to Pretty Little Steals.<br><span>You think she&#39;s paying full price?</span></p>
-</div>
-
-<section class="dawn" id="window">
-  <div>
-    <p class="label">Members Only</p>
-    <h2 class="dawn-h">The Dawn<br>Window.</h2>
-    <p class="dawn-sub">Every Tuesday. 5:55am CT.<br>24 hours. One drop.<br>The devil gets first access.</p>
-  </div>
-  <div class="dawn-form">
-    <input type="email" placeholder="your email. nothing else.">
-    <button class="btn-ghost">I want first access.</button>
-  </div>
-</section>
-
-<footer id="about">
-  <div>
-    <div class="f-brand">belle.</div>
-    <div class="f-sub">by Pretty Little Steals</div>
-    <div class="f-copy">&copy; 2026 belle. All rights reserved.</div>
-  </div>
-  <ul class="f-links">
-    <li><a href="#">Instagram</a></li>
-    <li><a href="#">TikTok</a></li>
-    <li><a href="#">Pinterest</a></li>
-  </ul>
+<footer class="footer">
+  <p><strong>Pretty Little Steals. by belle.</strong></p>
+  <p>The devil subscribes.</p>
+  <p>Instagram / TikTok / Pinterest</p>
+  <p>© 2026 belle. All rights reserved.</p>
 </footer>
 
 </body>
