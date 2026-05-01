@@ -52,7 +52,7 @@ p{
   justify-content:space-between;
   align-items:center;
   padding:21px 34px;
-  background:rgba(245,240,232,.88);
+  background:rgba(245,240,232,.92);
   border-bottom:1px solid rgba(26,26,26,.08);
   backdrop-filter:blur(13px);
 }
@@ -76,10 +76,11 @@ p{
 .hero{
   min-height:100vh;
   padding:144px 34px 89px;
-  display:grid;
-  grid-template-columns:1.618fr 1fr;
-  gap:89px;
-  align-items:center;
+}
+
+.hero-inner{
+  max-width:1180px;
+  margin:0 auto;
 }
 
 .kicker{
@@ -109,12 +110,8 @@ h1{
 .campaign{
   margin-top:55px;
   padding-top:21px;
-  border-top:1px solid rgba(201,168,76,.55);
+  border-top:1px solid rgba(201,168,76,.28);
   max-width:377px;
-}
-
-.campaign strong{
-  display:block;
   font-family:"Cormorant Garamond",serif;
   font-size:34px;
   font-weight:300;
@@ -122,78 +119,25 @@ h1{
   letter-spacing:-.02em;
 }
 
-.campaign span{
-  display:block;
-  margin-top:13px;
-  color:rgba(26,26,26,.58);
-  font-size:14px;
-}
-
 .cta{
   display:inline-block;
   margin-top:34px;
   padding:16px 0 13px;
-  border-bottom:1px solid var(--gold);
+  border-bottom:1px solid rgba(201,168,76,.75);
   color:var(--lanuit);
   font-size:10px;
   letter-spacing:3px;
   text-transform:uppercase;
 }
 
-.mood-panel{
-  min-height:610px;
-  position:relative;
-  background:var(--cream);
-  border:1px solid rgba(201,168,76,.35);
-  padding:34px;
-  display:grid;
-  grid-template-rows:1fr auto;
-  overflow:hidden;
-}
-
-.mood-panel:before{
-  content:"";
-  position:absolute;
-  inset:34px;
+.hero-image{
+  margin-top:55px;
+  height:55vh;
+  min-height:377px;
   border:1px solid rgba(201,168,76,.22);
-}
-
-.mood-art{
-  position:absolute;
-  inset:0;
   background:
-    radial-gradient(circle at 62% 22%, rgba(232,196,184,.65), transparent 26%),
-    radial-gradient(circle at 18% 78%, rgba(201,123,138,.28), transparent 30%),
-    linear-gradient(135deg, var(--cream), var(--lair));
-}
-
-.mood-panel img{
-  position:absolute;
-  width:58%;
-  height:72%;
-  object-fit:cover;
-  right:34px;
-  top:55px;
-  filter:saturate(.72) contrast(.94);
-  opacity:.88;
-}
-
-.seal{
-  position:relative;
-  z-index:2;
-  align-self:end;
-  justify-self:start;
-  width:89px;
-  height:89px;
-  border-radius:50%;
-  border:1px solid rgba(201,168,76,.65);
-  display:grid;
-  place-items:center;
-  background:rgba(245,240,232,.78);
-  font-family:"Cormorant Garamond",serif;
-  font-size:42px;
-  font-style:italic;
-  color:var(--gold);
+    linear-gradient(rgba(245,240,232,.08),rgba(245,240,232,.18)),
+    url("https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80") center/cover;
 }
 
 .section{
@@ -229,15 +173,15 @@ h2{
 .persona-grid{
   display:grid;
   grid-template-columns:repeat(6,1fr);
-  border-top:1px solid rgba(201,168,76,.55);
-  border-left:1px solid rgba(201,168,76,.55);
+  border-top:1px solid rgba(201,168,76,.28);
+  border-left:1px solid rgba(201,168,76,.28);
 }
 
 .persona{
   min-height:233px;
   padding:34px 21px;
-  border-right:1px solid rgba(201,168,76,.55);
-  border-bottom:1px solid rgba(201,168,76,.55);
+  border-right:1px solid rgba(201,168,76,.28);
+  border-bottom:1px solid rgba(201,168,76,.28);
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -270,7 +214,7 @@ h2{
 .badge{
   width:233px;
   height:233px;
-  border:1px solid rgba(45,74,62,.55);
+  border:1px solid rgba(45,74,62,.45);
   border-radius:50%;
   display:grid;
   place-items:center;
@@ -292,7 +236,7 @@ h2{
 .review{
   padding:34px;
   background:var(--cream);
-  border:1px solid rgba(45,74,62,.18);
+  border:1px solid rgba(45,74,62,.14);
 }
 
 .review blockquote{
@@ -311,8 +255,7 @@ h2{
 }
 
 .window{
-  background:
-    linear-gradient(90deg, var(--cream) 0%, var(--cream) 62%, rgba(125,32,39,.08) 62%);
+  background:var(--cream);
 }
 
 .window-inner{
@@ -358,17 +301,15 @@ input::placeholder{
   .navlinks{display:none}
 
   .hero{
-    grid-template-columns:1fr;
     padding-top:110px;
-    gap:55px;
   }
 
   h1{
     font-size:76px;
   }
 
-  .mood-panel{
-    min-height:466px;
+  .hero-image{
+    height:466px;
   }
 
   .persona-grid{
@@ -401,23 +342,20 @@ input::placeholder{
 </nav>
 
 <header class="hero">
-  <div>
+  <div class="hero-inner">
     <div class="kicker">belle. by Pretty Little Steals</div>
+
     <h1>The look was never the price tag.</h1>
+
     <p class="sub">The dawn of disciplined taste.</p>
 
-    <div class="campaign">
-      <strong>The Devil Wears belle.</strong>
-      <span>The devil subscribes to Pretty Little Steals.</span>
-    </div>
+    <div class="campaign">The Devil Wears belle.</div>
+
+    <p class="sub">The devil subscribes to Pretty Little Steals.</p>
 
     <a class="cta">Enter The Dawn Window</a>
-  </div>
 
-  <div class="mood-panel">
-    <div class="mood-art"></div>
-    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80" alt="">
-    <div class="seal">b.</div>
+    <div class="hero-image"></div>
   </div>
 </header>
 
@@ -446,10 +384,22 @@ input::placeholder{
 
     <div>
       <h2>The steal. The proof. The standard.</h2>
+
       <div class="review-grid">
-        <div class="review"><blockquote>“Found the exact same blazer for $34.”</blockquote><p>Sloane / saved $216</p></div>
-        <div class="review"><blockquote>“The bag looked better in person.”</blockquote><p>Soleil / saved $142</p></div>
-        <div class="review"><blockquote>“Same line. Better fabric.”</blockquote><p>Vivienne / saved $380</p></div>
+        <div class="review">
+          <blockquote>“Found the exact same blazer for $34.”</blockquote>
+          <p>Sloane / saved $216</p>
+        </div>
+
+        <div class="review">
+          <blockquote>“The bag looked better in person.”</blockquote>
+          <p>Soleil / saved $142</p>
+        </div>
+
+        <div class="review">
+          <blockquote>“Same line. Better fabric.”</blockquote>
+          <p>Vivienne / saved $380</p>
+        </div>
       </div>
     </div>
   </div>
@@ -460,7 +410,7 @@ input::placeholder{
     <div>
       <div class="label">Every Tuesday. 5:55am CT.</div>
       <h2>The Dawn Window</h2>
-      <p>24 hours. One drop. The devil gets first access. So do you.</p>
+      <p>24 hours. One drop. gigi elle gets first access. So do you.</p>
     </div>
 
     <div>
@@ -472,8 +422,8 @@ input::placeholder{
 
 <footer class="footer">
   <p><strong>Pretty Little Steals. by belle.</strong></p>
-  <p>The devil subscribes.</p>
-  <p>Instagram / TikTok / Pinterest</p>
+  <p>gigi elle subscribes.</p>
+  <p>Instagram / TikTok / Pinterest / Threads /</p>
   <p>© 2026 belle. All rights reserved.</p>
 </footer>
 
