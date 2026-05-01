@@ -3,288 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>belle. by Pretty Little Steals</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
---bg:#F5F0E8;
---black:#1A1A1A;
---gold:#C9A84C;
---cream:#FAF6F0;
---green:#2D4A3E;
---red:#7D2027;
+  --lair:#F5F0E8;
+  --lanuit:#1A1A1A;
+  --lamonte:#C9A84C;
+  --cream:#FAF6F0;
+  --soleil:#E8C4B8;
+  --rose:#C97B8A;
+  --ll:#2D4A3E;
+  --miranda:#7D2027;
+  --s1:8px;--s2:13px;--s3:21px;--s4:34px;--s5:55px;--s6:89px;--s7:144px;
 }
 
-body{
-margin:0;
-background:var(--bg);
-color:var(--black);
-font-family:'Jost',sans-serif;
-}
-
-/* NAV */
+*{box-sizing:border-box}
+body{margin:0;background:var(--lair);color:var(--lanuit);font-family:Jost,sans-serif;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
 
 .nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:28px 40px;
-z-index:10;
+  position:fixed;top:0;left:0;width:100%;z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:21px 34px;background:rgba(245,240,232,.84);
+  backdrop-filter:blur(13px);border-bottom:1px solid rgba(201,168,76,.28)
 }
-
-.logo{
-font-family:'Cormorant Garamond',serif;
-font-size:32px;
-letter-spacing:.08em;
-}
-
-.navlinks{
-font-size:11px;
-letter-spacing:3px;
-text-transform:uppercase;
-opacity:.6;
-display:flex;
-gap:30px;
-}
-
-/* HERO */
+.logo{font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:300;letter-spacing:.05em}
+.navlinks{display:flex;gap:34px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(26,26,26,.62)}
 
 .hero{
-display:grid;
-grid-template-columns:1.2fr .8fr;
-height:100vh;
+  min-height:100vh;padding:144px 34px 89px;
+  display:grid;grid-template-columns:1fr;gap:55px;align-items:center;
+  background:
+    radial-gradient(circle at 78% 22%, rgba(232,196,184,.65), transparent 28%),
+    linear-gradient(90deg, var(--lair) 0%, var(--lair) 58%, var(--cream) 58%, var(--cream) 100%);
 }
-
-.hero-left{
-display:flex;
-flex-direction:column;
-justify-content:center;
-padding:120px 80px;
+.hero-inner{max-width:1180px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.618fr 1fr;gap:55px;align-items:center}
+.kicker{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--lamonte);margin-bottom:21px}
+h1{
+  font-family:"Cormorant Garamond",serif;font-size:clamp(76px,9vw,144px);
+  line-height:.82;font-weight:400;letter-spacing:-.045em;margin:0;max-width:8ch
 }
-
-.hero h1{
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(70px,7vw,120px);
-line-height:.9;
-margin:0;
-letter-spacing:-.03em;
+.sub{font-size:18px;color:rgba(26,26,26,.68);margin:34px 0 0;max-width:390px}
+.campaign{
+  margin-top:55px;border-top:1px solid var(--lamonte);padding-top:21px;
+  font-family:"Cormorant Garamond",serif;font-size:34px;line-height:1;color:var(--lanuit)
 }
-
-.hero p{
-margin-top:20px;
-font-size:18px;
-opacity:.7;
-max-width:400px;
-}
-
 .cta{
-margin-top:40px;
-padding:18px 30px;
-background:var(--gold);
-border:1px solid var(--gold);
-font-size:11px;
-letter-spacing:3px;
-text-transform:uppercase;
-width:fit-content;
+  display:inline-block;margin-top:34px;padding:18px 34px;border:1px solid var(--lamonte);
+  background:var(--lamonte);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--lanuit)
+}
+.poster{
+  min-height:610px;position:relative;border:1px solid rgba(201,168,76,.55);background:var(--cream);
+  display:flex;align-items:flex-end;justify-content:center;padding:34px;overflow:hidden
+}
+.poster:before{
+  content:"";position:absolute;inset:34px;border:1px solid rgba(201,168,76,.35)
+}
+.poster-art{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom, rgba(245,240,232,.05), rgba(245,240,232,.38)),
+    url("https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80") center/cover;
+  filter:saturate(.82) contrast(.96);
+}
+.seal{
+  position:relative;z-index:2;width:89px;height:89px;border-radius:50%;
+  border:1px solid var(--lamonte);display:grid;place-items:center;
+  background:rgba(245,240,232,.82);font-family:"Cormorant Garamond",serif;
+  font-size:42px;font-style:italic;color:var(--lamonte)
 }
 
-.hero-right{
-background:
-url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')
-center/cover;
+.section{padding:89px 34px}
+.wrap{max-width:1180px;margin:0 auto}
+.label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--lamonte);margin-bottom:21px}
+h2{font-family:"Cormorant Garamond",serif;font-size:clamp(48px,6vw,89px);line-height:.9;font-weight:400;letter-spacing:-.035em;margin:0 0 34px}
+p{color:rgba(26,26,26,.66);line-height:1.65}
+
+.personas{background:var(--cream)}
+.persona-grid{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--lamonte);border-left:1px solid var(--lamonte)}
+.persona{min-height:233px;padding:34px 21px;border-right:1px solid var(--lamonte);border-bottom:1px solid var(--lamonte);display:flex;flex-direction:column;justify-content:space-between}
+.persona h3{font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:400;letter-spacing:.04em;margin:0;text-transform:uppercase}
+.persona p{font-size:13px;margin:0;color:rgba(26,26,26,.66)}
+
+.receipt{background:var(--ll);color:var(--lair)}
+.receipt h2,.receipt p{color:var(--lair)}
+.receipt-grid{display:grid;grid-template-columns:.618fr 1fr;gap:55px;align-items:start}
+.badge{
+  width:233px;height:233px;border:1px solid var(--lamonte);border-radius:50%;
+  display:grid;place-items:center;text-align:center;color:var(--lamonte);
+  font-family:"Cormorant Garamond",serif;font-size:42px;font-style:italic;line-height:.9
 }
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:21px}
+.review{border:1px solid rgba(245,240,232,.28);padding:34px;background:rgba(245,240,232,.04)}
+.review blockquote{font-family:"Cormorant Garamond",serif;font-size:30px;line-height:1;margin:0 0 21px;color:var(--lair)}
+.review p{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,.72);margin:0}
 
-/* PERSONAS */
+.window{background:var(--miranda);color:var(--lair)}
+.window h2,.window p{color:var(--lair)}
+.window-row{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:end}
+input{width:100%;padding:18px;border:1px solid rgba(245,240,232,.55);background:transparent;color:var(--lair);font:inherit}
+input::placeholder{color:rgba(245,240,232,.65)}
+.window .cta{background:transparent;border-color:var(--lair);color:var(--lair);margin-top:13px}
 
-.personas{
-display:grid;
-grid-template-columns:repeat(6,1fr);
-border-top:1px solid rgba(0,0,0,.08);
-}
-
-.persona{
-padding:40px 20px;
-border-right:1px solid rgba(0,0,0,.08);
-}
-
-.persona h3{
-font-family:'Cormorant Garamond',serif;
-font-size:18px;
-letter-spacing:.1em;
-margin:0;
-}
-
-.persona p{
-margin-top:8px;
-font-size:13px;
-opacity:.6;
-}
-
-/* LL APPROVED */
-
-.ll{
-background:var(--green);
-color:white;
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-}
-
-.review{
-padding:60px;
-border-right:1px solid rgba(255,255,255,.2);
-}
-
-.review blockquote{
-font-family:'Cormorant Garamond',serif;
-font-size:28px;
-margin:0 0 20px;
-}
-
-/* DAWN */
-
-.dawn{
-background:var(--red);
-color:white;
-display:flex;
-justify-content:space-between;
-padding:80px;
-align-items:center;
-}
-
-.dawn-left h2{
-font-family:'Cormorant Garamond',serif;
-font-size:60px;
-margin:0;
-}
-
-input{
-padding:16px;
-border:1px solid rgba(255,255,255,.6);
-background:transparent;
-color:white;
-width:280px;
-}
-
-input::placeholder{
-color:rgba(255,255,255,.6);
-}
-
-.dawn button{
-margin-left:20px;
-padding:16px 24px;
-background:transparent;
-border:1px solid white;
-color:white;
-letter-spacing:3px;
-font-size:11px;
-}
-
-/* FOOTER */
-
-.footer{
-padding:60px;
-font-size:13px;
-opacity:.7;
-}
+.footer{padding:55px 34px;border-top:1px solid rgba(201,168,76,.3)}
+.footer p{font-size:13px;margin:8px 0;color:rgba(26,26,26,.62)}
 
 @media(max-width:900px){
-.hero{
-grid-template-columns:1fr;
-height:auto;
+  .navlinks{display:none}
+  .hero{padding-top:110px;background:var(--lair)}
+  .hero-inner,.receipt-grid,.window-row{grid-template-columns:1fr}
+  .poster{min-height:466px}
+  .persona-grid{grid-template-columns:repeat(2,1fr)}
+  .review-grid{grid-template-columns:1fr}
+  h1{font-size:76px}
 }
-.personas{
-grid-template-columns:repeat(2,1fr);
-}
-.ll{
-grid-template-columns:1fr;
-}
-.dawn{
-flex-direction:column;
-gap:30px;
-align-items:flex-start;
-}
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="nav">
-<div class="logo">belle.</div>
-<div class="navlinks">
-<div>The Steal</div>
-<div>The Personas</div>
-<div>The Window</div>
-<div>About</div>
-</div>
-</div>
+<nav class="nav">
+  <div class="logo">belle.</div>
+  <div class="navlinks">
+    <a href="#personas">The Personas</a>
+    <a href="#receipt">LL Approved</a>
+    <a href="#window">The Window</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
 
-<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="kicker">belle. by Pretty Little Steals</div>
+      <h1>The look was never the price tag.</h1>
+      <p class="sub">The dawn of disciplined taste.</p>
+      <div class="campaign">The Devil Wears belle.</div>
+      <p class="sub">The devil subscribes to Pretty Little Steals.</p>
+      <a class="cta" href="#window">Enter The Dawn Window</a>
+    </div>
+    <div class="poster">
+      <div class="poster-art"></div>
+      <div class="seal">b.</div>
+    </div>
+  </div>
+</header>
 
-<div class="hero">
-<div class="hero-left">
-<h1>The look was never the price tag.</h1>
-<p>The dawn of disciplined taste.</p>
-<div class="cta">THIS WEEK’S STEAL DROP</div>
-</div>
-<div class="hero-right"></div>
-</div>
+<section class="section personas" id="personas">
+  <div class="wrap">
+    <div class="label">The Personas</div>
+    <h2>Outfit formulas, built for her.</h2>
+    <div class="persona-grid">
+      <div class="persona"><h3>Sloane</h3><p>Quiet luxury. Never loud about it.</p></div>
+      <div class="persona"><h3>Soleil</h3><p>Effortless. Always has been.</p></div>
+      <div class="persona"><h3>Jade</h3><p>Dark. Precise. Ahead of you.</p></div>
+      <div class="persona"><h3>Vivienne</h3><p>She arrived. You noticed.</p></div>
+      <div class="persona"><h3>Maegan</h3><p>Modest. Never forgettable.</p></div>
+      <div class="persona"><h3>Noor</h3><p>Light. The expensive kind.</p></div>
+    </div>
+  </div>
+</section>
 
-<!-- PERSONAS -->
+<section class="section receipt" id="receipt">
+  <div class="wrap receipt-grid">
+    <div>
+      <div class="label">The Receipt</div>
+      <div class="badge">LL<br>Approved.</div>
+    </div>
+    <div>
+      <h2>The steal. The proof. The standard.</h2>
+      <div class="review-grid">
+        <div class="review"><blockquote>“Found the exact same blazer for $34.”</blockquote><p>Sloane / saved $216</p></div>
+        <div class="review"><blockquote>“The bag looked better in person.”</blockquote><p>Soleil / saved $142</p></div>
+        <div class="review"><blockquote>“Same line. Better fabric.”</blockquote><p>Vivienne / saved $380</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="personas">
-<div class="persona"><h3>SLOANE</h3><p>Quiet luxury. Never loud about it.</p></div>
-<div class="persona"><h3>SOLEIL</h3><p>Effortless. Always has been.</p></div>
-<div class="persona"><h3>JADE</h3><p>Dark. Precise. Ahead of you.</p></div>
-<div class="persona"><h3>VIVIENNE</h3><p>She arrived. You noticed.</p></div>
-<div class="persona"><h3>MAEGAN</h3><p>Modest. Never forgettable.</p></div>
-<div class="persona"><h3>NOOR</h3><p>Light. The expensive kind.</p></div>
-</div>
+<section class="section window" id="window">
+  <div class="wrap window-row">
+    <div>
+      <div class="label">Every Tuesday. 5:55am CT.</div>
+      <h2>The Dawn Window</h2>
+      <p>24 hours. One drop. The devil gets first access. So do you.</p>
+    </div>
+    <div>
+      <input placeholder="your email. nothing else.">
+      <a class="cta">I want first access.</a>
+    </div>
+  </div>
+</section>
 
-<!-- LL APPROVED -->
-
-<div class="ll">
-<div class="review">
-<blockquote>"Found the exact same blazer for $34."</blockquote>
-<p>Sloane / saved $216</p>
-</div>
-<div class="review">
-<blockquote>"The bag looked better in person."</blockquote>
-<p>Soleil / saved $142</p>
-</div>
-<div class="review">
-<blockquote>"Same line. Better fabric."</blockquote>
-<p>Vivienne / saved $380</p>
-</div>
-</div>
-
-<!-- DAWN -->
-
-<div class="dawn">
-<div class="dawn-left">
-<h2>The Dawn Window</h2>
-<p>Every Tuesday. 5:55am CT.</p>
-</div>
-<div>
-<input placeholder="your email. nothing else.">
-<button>I WANT FIRST ACCESS.</button>
-</div>
-</div>
-
-<!-- FOOTER -->
-
-<div class="footer">
-<p><strong>Pretty Little Steals. by belle.</strong></p>
-<p>The devil subscribes.</p>
-<p>Instagram / TikTok / Pinterest</p>
-<p>© 2026 belle. All rights reserved.</p>
-</div>
+<footer class="footer" id="about">
+  <p><strong>Pretty Little Steals. by belle.</strong></p>
+  <p>The devil subscribes.</p>
+  <p>Instagram / TikTok / Pinterest</p>
+  <p>© 2026 belle. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
