@@ -3,25 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>belle. by Pretty Little Steals</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
---bg:#F5F0E8;
---black:#1A1A1A;
---gold:#C9A84C;
---cream:#FAF6F0;
---green:#2D4A3E;
---red:#7D2027;
+  --lair:#F5F0E8;
+  --lanuit:#1A1A1A;
+  --lamonte:#C9A84C;
+  --cream:#FAF6F0;
+  --ll:#2D4A3E;
+  --miranda:#7D2027;
 }
+
+/* BASE */
 
 body{
 margin:0;
-background:var(--bg);
-color:var(--black);
-font-family:'Jost',sans-serif;
+background:var(--lair);
+color:var(--lanuit);
+font-family:Jost,sans-serif;
 }
 
 /* NAV */
@@ -33,133 +35,173 @@ left:0;
 width:100%;
 display:flex;
 justify-content:space-between;
-padding:28px 40px;
-z-index:10;
+padding:21px 34px;
+background:rgba(245,240,232,.9);
+border-bottom:1px solid rgba(201,168,76,.3);
 }
 
 .logo{
-font-family:'Cormorant Garamond',serif;
+font-family:"Cormorant Garamond",serif;
 font-size:32px;
-letter-spacing:.08em;
+font-weight:300;
 }
 
 .navlinks{
-font-size:11px;
+display:flex;
+gap:34px;
+font-size:10px;
 letter-spacing:3px;
 text-transform:uppercase;
 opacity:.6;
-display:flex;
-gap:30px;
 }
 
 /* HERO */
 
 .hero{
+padding:144px 34px 89px;
 display:grid;
-grid-template-columns:1.2fr .8fr;
-height:100vh;
+grid-template-columns:1.618fr 1fr;
+gap:55px;
+align-items:center;
 }
 
-.hero-left{
-display:flex;
-flex-direction:column;
-justify-content:center;
-padding:120px 80px;
-}
-
-.hero h1{
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(70px,7vw,120px);
-line-height:.9;
+h1{
+font-family:"Cormorant Garamond",serif;
+font-size:clamp(80px,8vw,140px);
+line-height:.85;
 margin:0;
-letter-spacing:-.03em;
 }
 
-.hero p{
-margin-top:20px;
+.sub{
+margin-top:13px;
 font-size:18px;
 opacity:.7;
-max-width:400px;
+}
+
+.campaign{
+margin-top:34px;
+font-family:"Cormorant Garamond",serif;
+font-size:34px;
+border-top:1px solid var(--lamonte);
+padding-top:21px;
 }
 
 .cta{
-margin-top:40px;
-padding:18px 30px;
-background:var(--gold);
-border:1px solid var(--gold);
-font-size:11px;
+margin-top:34px;
+padding:18px 34px;
+background:var(--lamonte);
+border:1px solid var(--lamonte);
 letter-spacing:3px;
+font-size:10px;
 text-transform:uppercase;
-width:fit-content;
+display:inline-block;
 }
 
-.hero-right{
-background:
-url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')
-center/cover;
+.poster{
+min-height:600px;
+border:1px solid var(--lamonte);
+background:url("https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80") center/cover;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+padding:34px;
+}
+
+.seal{
+width:89px;
+height:89px;
+border-radius:50%;
+border:1px solid var(--lamonte);
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(245,240,232,.8);
+font-family:"Cormorant Garamond",serif;
+font-size:36px;
+color:var(--lamonte);
 }
 
 /* PERSONAS */
 
 .personas{
+background:var(--cream);
+padding:89px 34px;
+}
+
+.persona-grid{
 display:grid;
 grid-template-columns:repeat(6,1fr);
-border-top:1px solid rgba(0,0,0,.08);
+border-top:1px solid var(--lamonte);
+border-left:1px solid var(--lamonte);
 }
 
 .persona{
-padding:40px 20px;
-border-right:1px solid rgba(0,0,0,.08);
+padding:34px 21px;
+border-right:1px solid var(--lamonte);
+border-bottom:1px solid var(--lamonte);
+background:transparent;
 }
 
 .persona h3{
-font-family:'Cormorant Garamond',serif;
-font-size:18px;
-letter-spacing:.1em;
+font-family:"Cormorant Garamond",serif;
+font-size:28px;
 margin:0;
 }
 
 .persona p{
-margin-top:8px;
 font-size:13px;
 opacity:.6;
 }
 
 /* LL APPROVED */
 
-.ll{
-background:var(--green);
+.receipt{
+background:var(--ll);
 color:white;
+padding:89px 34px;
+}
+
+.badge{
+width:200px;
+height:200px;
+border:1px solid var(--lamonte);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:"Cormorant Garamond",serif;
+font-size:32px;
+letter-spacing:-.02em;
+color:var(--lamonte);
+}
+
+.review-grid{
 display:grid;
-grid-template-columns:1fr 1fr 1fr;
+grid-template-columns:repeat(3,1fr);
+gap:21px;
+margin-top:34px;
 }
 
 .review{
-padding:60px;
-border-right:1px solid rgba(255,255,255,.2);
+border:1px solid rgba(255,255,255,.3);
+padding:34px;
 }
 
 .review blockquote{
-font-family:'Cormorant Garamond',serif;
+font-family:"Cormorant Garamond",serif;
 font-size:28px;
-margin:0 0 20px;
+margin:0 0 13px;
 }
 
 /* DAWN */
 
-.dawn{
-background:var(--red);
+.window{
+background:var(--miranda);
 color:white;
+padding:89px 34px;
 display:flex;
 justify-content:space-between;
-padding:80px;
-align-items:center;
-}
-
-.dawn-left h2{
-font-family:'Cormorant Garamond',serif;
-font-size:60px;
-margin:0;
+align-items:flex-end;
 }
 
 input{
@@ -167,47 +209,18 @@ padding:16px;
 border:1px solid rgba(255,255,255,.6);
 background:transparent;
 color:white;
-width:280px;
 }
 
 input::placeholder{
 color:rgba(255,255,255,.6);
 }
 
-.dawn button{
-margin-left:20px;
-padding:16px 24px;
-background:transparent;
-border:1px solid white;
-color:white;
-letter-spacing:3px;
-font-size:11px;
-}
-
 /* FOOTER */
 
 .footer{
-padding:60px;
+padding:55px 34px;
 font-size:13px;
 opacity:.7;
-}
-
-@media(max-width:900px){
-.hero{
-grid-template-columns:1fr;
-height:auto;
-}
-.personas{
-grid-template-columns:repeat(2,1fr);
-}
-.ll{
-grid-template-columns:1fr;
-}
-.dawn{
-flex-direction:column;
-gap:30px;
-align-items:flex-start;
-}
 }
 
 </style>
@@ -218,27 +231,33 @@ align-items:flex-start;
 <div class="nav">
 <div class="logo">belle.</div>
 <div class="navlinks">
-<div>The Steal</div>
 <div>The Personas</div>
+<div>LL Approved</div>
 <div>The Window</div>
 <div>About</div>
 </div>
 </div>
 
-<!-- HERO -->
-
 <div class="hero">
-<div class="hero-left">
+<div>
 <h1>The look was never the price tag.</h1>
-<p>The dawn of disciplined taste.</p>
-<div class="cta">THIS WEEK’S STEAL DROP</div>
-</div>
-<div class="hero-right"></div>
+<p class="sub">The dawn of disciplined taste.</p>
+
+<div class="campaign">
+The Devil Wears belle.<br>
+The devil subscribes to Pretty Little Steals.
 </div>
 
-<!-- PERSONAS -->
+<div class="cta">Enter The Dawn Window</div>
+</div>
+
+<div class="poster">
+<div class="seal">b.</div>
+</div>
+</div>
 
 <div class="personas">
+<div class="persona-grid">
 <div class="persona"><h3>SLOANE</h3><p>Quiet luxury. Never loud about it.</p></div>
 <div class="persona"><h3>SOLEIL</h3><p>Effortless. Always has been.</p></div>
 <div class="persona"><h3>JADE</h3><p>Dark. Precise. Ahead of you.</p></div>
@@ -246,44 +265,33 @@ align-items:flex-start;
 <div class="persona"><h3>MAEGAN</h3><p>Modest. Never forgettable.</p></div>
 <div class="persona"><h3>NOOR</h3><p>Light. The expensive kind.</p></div>
 </div>
-
-<!-- LL APPROVED -->
-
-<div class="ll">
-<div class="review">
-<blockquote>"Found the exact same blazer for $34."</blockquote>
-<p>Sloane / saved $216</p>
 </div>
-<div class="review">
-<blockquote>"The bag looked better in person."</blockquote>
-<p>Soleil / saved $142</p>
-</div>
-<div class="review">
-<blockquote>"Same line. Better fabric."</blockquote>
-<p>Vivienne / saved $380</p>
+
+<div class="receipt">
+<div class="badge">LL Approved.</div>
+
+<div class="review-grid">
+<div class="review"><blockquote>"Found the exact same blazer for $34."</blockquote><p>Sloane / saved $216</p></div>
+<div class="review"><blockquote>"The bag looked better in person."</blockquote><p>Soleil / saved $142</p></div>
+<div class="review"><blockquote>"Same line. Better fabric."</blockquote><p>Vivienne / saved $380</p></div>
 </div>
 </div>
 
-<!-- DAWN -->
-
-<div class="dawn">
-<div class="dawn-left">
+<div class="window">
+<div>
 <h2>The Dawn Window</h2>
 <p>Every Tuesday. 5:55am CT.</p>
 </div>
+
 <div>
 <input placeholder="your email. nothing else.">
-<button>I WANT FIRST ACCESS.</button>
 </div>
 </div>
-
-<!-- FOOTER -->
 
 <div class="footer">
 <p><strong>Pretty Little Steals. by belle.</strong></p>
 <p>The devil subscribes.</p>
-<p>Instagram / TikTok / Pinterest</p>
-<p>© 2026 belle. All rights reserved.</p>
+<p>© 2026 belle.</p>
 </div>
 
 </body>
