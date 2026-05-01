@@ -1,129 +1,243 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  background: #F5F0E8;
-  color: #1A1A1A;
-  font-family: 'Jost', sans-serif;
-  padding: 20px;
+:root{
+--lair:#F5F0E8;
+--lanuit:#1A1A1A;
+--lamonte:#C9A84C;
+--cream:#FAF6F0;
+--ll:#2D4A3E;
+--miranda:#7D2027;
 }
 
-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 48px;
-  line-height: 1;
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:var(--lair);
+color:var(--lanuit);
+font-family:'Jost',sans-serif;
 }
 
-h2 {
-  font-family: 'Cormorant Garamond', serif;
+/* NAV */
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 24px;
+border-bottom:1px solid rgba(0,0,0,.08);
 }
 
-.section {
-  margin-top: 60px;
+.wordmark{
+font-family:'Cormorant Garamond',serif;
+font-size:30px;
+font-weight:300;
+letter-spacing:.04em;
 }
 
-.button {
-  background: #C9A84C;
-  border: none;
-  padding: 12px 18px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-top: 20px;
+.navlinks{
+display:none;
+font-size:11px;
+letter-spacing:2px;
+text-transform:uppercase;
+gap:18px;
 }
 
-.receipt {
-  background: #2D4A3E;
-  color: white;
-  padding: 30px;
+/* HERO */
+
+.hero{
+display:grid;
+gap:40px;
+padding:60px 24px;
 }
 
-.dawn {
-  background: #7D2027;
-  color: white;
-  padding: 30px;
+.hero h1{
+font-family:'Cormorant Garamond',serif;
+font-size:clamp(48px,10vw,90px);
+line-height:.85;
+margin:0;
 }
 
-.card {
-  border: 1px solid #ddd;
-  padding: 20px;
-  margin-top: 20px;
+.sub{
+margin-top:18px;
+font-size:16px;
+}
+
+.button{
+display:inline-block;
+margin-top:28px;
+padding:16px 28px;
+background:var(--lamonte);
+border:1px solid var(--lamonte);
+letter-spacing:3px;
+font-size:11px;
+text-transform:uppercase;
+}
+
+.hero-img{
+min-height:420px;
+background:
+url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80')
+center/cover;
+}
+
+/* PERSONAS */
+
+.personas{
+background:var(--cream);
+padding:60px 24px;
+}
+
+.grid{
+display:grid;
+gap:18px;
+margin-top:30px;
+}
+
+.card{
+border:1px solid var(--lamonte);
+padding:20px;
+}
+
+.card h3{
+font-family:'Cormorant Garamond',serif;
+letter-spacing:.04em;
+text-transform:uppercase;
+margin:0;
+}
+
+/* LL APPROVED */
+
+.ll{
+background:var(--ll);
+color:white;
+padding:60px 24px;
+}
+
+.review{
+border:1px solid rgba(255,255,255,.3);
+padding:20px;
+}
+
+.review blockquote{
+font-family:'Cormorant Garamond',serif;
+font-size:26px;
+margin:0 0 12px;
+}
+
+/* DAWN */
+
+.dawn{
+background:var(--miranda);
+color:white;
+padding:60px 24px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:1px solid rgba(255,255,255,.5);
+background:transparent;
+color:white;
+}
+
+.footer{
+padding:40px 24px;
+border-top:1px solid rgba(0,0,0,.08);
+}
+
+@media(min-width:760px){
+.navlinks{display:flex}
+.hero{grid-template-columns:1fr 1fr}
+.grid{grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
 
 <body>
 
-<h1>belle.</h1>
-<p>The dawn of disciplined taste.</p>
+<!-- NAV -->
 
-<div class="section">
-  <h1>The look was never the price tag.</h1>
-  <p>Your little secret for looking expensive.</p>
-
-  <button class="button">THIS WEEK’S STEAL DROP</button>
+<div class="nav">
+<div class="wordmark">belle.</div>
+<div class="navlinks">
+<div>The Steal</div>
+<div>The Personas</div>
+<div>The Window</div>
+<div>About</div>
+</div>
 </div>
 
-<div class="section">
-  <h2>The Steal Drop</h2>
+<!-- HERO -->
 
-  <div class="card">
-    <strong>Blazer</strong><br>
-    Structured wool blazer<br>
-    <em>Under $150</em>
-    <p>Holds shape. Works across everything.</p>
-  </div>
-
-  <div class="card">
-    <strong>Bag</strong><br>
-    Clean shoulder bag<br>
-    <em>Under $80</em>
-    <p>Proportion reads higher than price.</p>
-  </div>
-
+<div class="hero">
+<div>
+<div class="wordmark">belle.</div>
+<h1>The look was never the price tag.</h1>
+<p class="sub">The dawn of disciplined taste.</p>
+<div class="button">THIS WEEK’S STEAL DROP</div>
+</div>
+<div class="hero-img"></div>
 </div>
 
-<div class="section receipt">
-  <h2>LL Approved.</h2>
-  <p>Real women. Real wear. Real results.</p>
+<!-- PERSONAS -->
+
+<div class="personas">
+<h2>The Personas</h2>
+<div class="grid">
+<div class="card"><h3>SLOANE</h3><p>Earned her seat</p></div>
+<div class="card"><h3>SOLEIL</h3><p>Dressed since birth</p></div>
+<div class="card"><h3>JADE</h3><p>Sets the trend</p></div>
+<div class="card"><h3>VIVIENNE</h3><p>Arrived</p></div>
+<div class="card"><h3>MAEGAN</h3><p>Always correct</p></div>
+<div class="card"><h3>NOOR</h3><p>Never compromises</p></div>
+</div>
 </div>
 
-<div class="section">
-  <h2>The Edits</h2>
+<!-- LL APPROVED -->
 
-  <p><strong>SLOANE</strong> — Earned her seat</p>
-  <p><strong>SOLEIL</strong> — Dressed since birth</p>
-  <p><strong>JADE</strong> — Sets the trend</p>
-  <p><strong>VIVIENNE</strong> — Arrived.</p>
-  <p><strong>DEEN</strong> — The standard</p>
-  <p><strong>MAEGAN</strong> — Always correct</p>
-
+<div class="ll">
+<h2>LL Approved.</h2>
+<div class="grid">
+<div class="review">
+<blockquote>"Found the exact same blazer for $34."</blockquote>
+<p>Sloane / saved $216</p>
+</div>
+<div class="review">
+<blockquote>"The bag looked better in person."</blockquote>
+<p>Soleil / saved $142</p>
+</div>
+<div class="review">
+<blockquote>"Same line. Better fabric."</blockquote>
+<p>Vivienne / saved $380</p>
+</div>
+</div>
 </div>
 
-<div class="section dawn">
-  <h2>THE DAWN WINDOW</h2>
-  <p>Every Tuesday. 5:55am CT.</p>
-  <p>24 hours. One drop.</p>
-  <p>The devil gets first access. So do you.</p>
+<!-- DAWN -->
+
+<div class="dawn">
+<h2>The Dawn Window</h2>
+<p>Every Tuesday. 5:55am CT. 24 hours. One drop.</p>
+<input placeholder="your email. nothing else.">
+<div class="button">I WANT FIRST ACCESS.</div>
 </div>
 
-<div class="section">
-  <h2>The Dawn</h2>
-  <p>
-  In 1998 my AOL screen name was belle.
-  I didn’t know I was naming a brand.
-  I was just being honest.
-  </p>
-</div>
+<!-- FOOTER -->
 
-<div class="section">
-  <h2>The Steal Drop. Every Tuesday.</h2>
-  <p>The devil subscribes. Do you?</p>
+<div class="footer">
+<p><strong>Pretty Little Steals. by belle.</strong></p>
+<p>The devil subscribes.</p>
+<p>Instagram / TikTok / Pinterest</p>
+<p>© 2026 belle. All rights reserved.</p>
 </div>
 
 </body>
