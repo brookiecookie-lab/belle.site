@@ -1,431 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>belle. by Pretty Little Steals</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pretty Little Steals | Get the Look Without Overpaying</title>
+  <meta name="description" content="Pretty Little Steals helps you find what to wear, where to buy it, and how to get the look for less — from everyday outfits to saw-it-on-TV style." />
+  //fonts.googleapis.com">
+  //fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Jost', sans-serif; background: #fdf6f0; color: #2b2b2b; }
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    /* HEADER */
+    header { text-align: center; padding: 32px 20px 16px; background: #fdf6f0; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #2b2b2b; text-decoration: none; letter-spacing: 0.02em; }
+    .tagline { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #9a8070; margin-top: 6px; }
 
-<style>
-:root{
-  --lair:#F5F0E8;
-  --cream:#FAF6F0;
-  --lanuit:#1A1A1A;
-  --gold:#C9A84C;
-  --soleil:#E8C4B8;
-  --rose:#C97B8A;
-  --ll:#2D4A3E;
-  --miranda:#7D2027;
+    /* NAV */
+    nav { background: #fff; border-top: 1px solid #edddd4; border-bottom: 1px solid #edddd4; }
+    nav ul { display: flex; justify-content: center; gap: 32px; list-style: none; padding: 14px 20px; flex-wrap: wrap; }
+    nav a { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: #2b2b2b; text-decoration: none; font-weight: 500; }
+    nav a:hover { color: #c8956c; }
 
-  --s1:8px;
-  --s2:13px;
-  --s3:21px;
-  --s4:34px;
-  --s5:55px;
-  --s6:89px;
-  --s7:144px;
-}
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #fceee6 0%, #f7ddd0 100%); padding: 64px 24px; text-align: center; }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #c8956c; margin-bottom: 16px; font-weight: 600; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.2; color: #2b2b2b; max-width: 680px; margin: 0 auto 20px; }
+    .hero p { font-size: 1.05rem; color: #6b5a50; max-width: 540px; margin: 0 auto 32px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 13px 28px; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; font-weight: 600; border-radius: 2px; transition: all 0.2s; }
+    .btn-dark { background: #2b2b2b; color: #fff; }
+    .btn-dark:hover { background: #c8956c; }
+    .btn-outline { border: 1.5px solid #2b2b2b; color: #2b2b2b; background: transparent; }
+    .btn-outline:hover { background: #2b2b2b; color: #fff; }
 
-*{box-sizing:border-box}
+    /* SECTION LABELS */
+    .section { padding: 60px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #c8956c; font-weight: 600; margin-bottom: 10px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: #2b2b2b; margin-bottom: 12px; }
+    .section-sub { color: #7a6a60; font-size: 1rem; line-height: 1.7; max-width: 560px; margin-bottom: 40px; }
 
-body{
-  margin:0;
-  background:var(--lair);
-  color:var(--lanuit);
-  font-family:Jost,sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
+    /* DEAL CARDS */
+    .deal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .deal-card { background: #fff; border: 1px solid #edddd4; border-radius: 8px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+    .deal-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+    .deal-card img { width: 100%; height: 200px; object-fit: cover; }
+    .deal-card-body { padding: 16px; }
+    .deal-badge { display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: #fceee6; color: #c8956c; padding: 3px 9px; border-radius: 20px; margin-bottom: 10px; font-weight: 600; }
+    .deal-badge.exclusive { background: #2b2b2b; color: #fff; }
+    .deal-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 6px; }
+    .deal-card p { font-size: 0.88rem; color: #7a6a60; margin-bottom: 12px; line-height: 1.6; }
+    .price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .price-sale { font-size: 1.15rem; font-weight: 700; color: #2b2b2b; }
+    .price-orig { font-size: 0.88rem; color: #b0a098; text-decoration: line-through; }
+    .price-save { font-size: 0.72rem; background: #d4edda; color: #2d6a4f; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+    .deal-link { display: block; text-align: center; background: #2b2b2b; color: #fff; padding: 10px; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; font-weight: 600; transition: background 0.2s; }
+    .deal-link:hover { background: #c8956c; }
 
-p{
-  color:rgba(26,26,26,.62);
-  line-height:1.65;
-}
+    /* TV SECTION */
+    .tv-section { background: #2b2b2b; color: #fff; padding: 60px 24px; }
+    .tv-inner { max-width: 1100px; margin: 0 auto; }
+    .tv-section .section-label { color: #c8956c; }
+    .tv-section .section-title { color: #fff; }
+    .tv-section .section-sub { color: #c4b4aa; }
+    .tv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .tv-card { background: #3a3330; border-radius: 8px; overflow: hidden; transition: transform 0.2s; }
+    .tv-card:hover { transform: translateY(-4px); }
+    .tv-card img { width: 100%; height: 220px; object-fit: cover; opacity: 0.9; }
+    .tv-card-body { padding: 18px; }
+    .tv-show-tag { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: #c8956c; font-weight: 600; margin-bottom: 8px; }
+    .tv-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: 8px; }
+    .tv-card p { font-size: 0.88rem; color: #c4b4aa; line-height: 1.6; margin-bottom: 14px; }
+    .tv-pieces { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .tv-piece { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #2b2b2b; border-radius: 4px; }
+    .tv-piece-name { font-size: 0.82rem; color: #e8d8ce; }
+    .tv-piece-link { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #c8956c; text-decoration: none; font-weight: 600; }
+    .tv-piece-link.our-pick { color: #f9c784; }
+    .our-pick-tag { font-size: 0.6rem; background: #c8956c; color: #fff; padding: 2px 6px; border-radius: 10px; margin-left: 6px; }
+    .tv-cta { display: block; text-align: center; border: 1.5px solid #c8956c; color: #c8956c; padding: 10px; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; font-weight: 600; transition: all 0.2s; }
+    .tv-cta:hover { background: #c8956c; color: #fff; }
 
-.nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:20;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:21px 34px;
-  background:rgba(245,240,232,.92);
-  border-bottom:1px solid rgba(26,26,26,.08);
-  backdrop-filter:blur(13px);
-}
+    /* FOOTER */
+    footer { background: #1e1a18; color: #8a7a72; text-align: center; padding: 32px 20px; font-size: 0.82rem; line-height: 1.8; }
+    footer a { color: #c8956c; text-decoration: none; }
 
-.logo{
-  font-family:"Cormorant Garamond",serif;
-  font-size:31px;
-  font-weight:300;
-  letter-spacing:.045em;
-}
-
-.navlinks{
-  display:flex;
-  gap:34px;
-  font-size:10px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:rgba(26,26,26,.48);
-}
-
-.hero{
-  min-height:100vh;
-  padding:144px 34px 89px;
-}
-
-.hero-inner{
-  max-width:1180px;
-  margin:0 auto;
-}
-
-.kicker{
-  font-size:10px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  color:rgba(26,26,26,.45);
-  margin-bottom:34px;
-}
-
-h1{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(72px,8vw,144px);
-  line-height:.92;
-  font-weight:300;
-  letter-spacing:-.055em;
-  margin:0;
-  max-width:8.6ch;
-}
-
-.sub{
-  margin-top:21px;
-  max-width:377px;
-  font-size:17px;
-}
-
-.campaign{
-  margin-top:55px;
-  padding-top:21px;
-  border-top:1px solid rgba(201,168,76,.28);
-  max-width:377px;
-  font-family:"Cormorant Garamond",serif;
-  font-size:34px;
-  font-weight:300;
-  line-height:1;
-  letter-spacing:-.02em;
-}
-
-.cta{
-  display:inline-block;
-  margin-top:34px;
-  padding:16px 0 13px;
-  border-bottom:1px solid rgba(201,168,76,.75);
-  color:var(--lanuit);
-  font-size:10px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
-
-.hero-image{
-  margin-top:55px;
-  height:55vh;
-  min-height:377px;
-  border:1px solid rgba(201,168,76,.22);
-  background:
-    linear-gradient(rgba(245,240,232,.08),rgba(245,240,232,.18)),
-    url("https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80") center/cover;
-}
-
-.section{
-  padding:89px 34px;
-}
-
-.wrap{
-  max-width:1180px;
-  margin:0 auto;
-}
-
-.label{
-  font-size:10px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  color:rgba(26,26,26,.45);
-  margin-bottom:21px;
-}
-
-h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(48px,6vw,89px);
-  line-height:.95;
-  font-weight:300;
-  letter-spacing:-.04em;
-  margin:0 0 55px;
-}
-
-.personas{
-  background:var(--cream);
-}
-
-.persona-grid{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  border-top:1px solid rgba(201,168,76,.28);
-  border-left:1px solid rgba(201,168,76,.28);
-}
-
-.persona{
-  min-height:233px;
-  padding:34px 21px;
-  border-right:1px solid rgba(201,168,76,.28);
-  border-bottom:1px solid rgba(201,168,76,.28);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.persona h3{
-  font-family:"Cormorant Garamond",serif;
-  font-size:31px;
-  font-weight:300;
-  letter-spacing:.03em;
-  margin:0;
-}
-
-.persona p{
-  margin:0;
-  font-size:13px;
-}
-
-.receipt{
-  background:var(--lair);
-}
-
-.receipt-inner{
-  display:grid;
-  grid-template-columns:.618fr 1fr;
-  gap:89px;
-  align-items:start;
-}
-
-.badge{
-  width:233px;
-  height:233px;
-  border:1px solid rgba(45,74,62,.45);
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:var(--ll);
-  font-family:"Cormorant Garamond",serif;
-  font-size:34px;
-  font-style:italic;
-  line-height:.95;
-  letter-spacing:-.02em;
-}
-
-.review-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:21px;
-}
-
-.review{
-  padding:34px;
-  background:var(--cream);
-  border:1px solid rgba(45,74,62,.14);
-}
-
-.review blockquote{
-  margin:0 0 21px;
-  font-family:"Cormorant Garamond",serif;
-  font-size:29px;
-  line-height:1.05;
-  font-weight:300;
-}
-
-.review p{
-  margin:0;
-  font-size:11px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.window{
-  background:var(--cream);
-}
-
-.window-inner{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:89px;
-  align-items:end;
-}
-
-.window h2{
-  color:var(--miranda);
-}
-
-input{
-  width:100%;
-  padding:18px;
-  border:1px solid rgba(125,32,39,.35);
-  background:transparent;
-  font:inherit;
-  color:var(--lanuit);
-}
-
-input::placeholder{
-  color:rgba(26,26,26,.45);
-}
-
-.window .cta{
-  color:var(--miranda);
-  border-bottom-color:var(--miranda);
-}
-
-.footer{
-  padding:55px 34px;
-  border-top:1px solid rgba(201,168,76,.25);
-}
-
-.footer p{
-  margin:8px 0;
-  font-size:13px;
-}
-
-@media(max-width:900px){
-  .navlinks{display:none}
-
-  .hero{
-    padding-top:110px;
-  }
-
-  h1{
-    font-size:76px;
-  }
-
-  .hero-image{
-    height:466px;
-  }
-
-  .persona-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .receipt-inner,
-  .window-inner{
-    grid-template-columns:1fr;
-    gap:55px;
-  }
-
-  .review-grid{
-    grid-template-columns:1fr;
-  }
-}
-</style>
+    @media (max-width: 600px) {
+      nav ul { gap: 16px; }
+      .hero { padding: 48px 16px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav class="nav">
-  <div class="logo">belle.</div>
-  <div class="navlinks">
-    <div>The Personas</div>
-    <div>LL Approved</div>
-    <div>The Window</div>
-    <div>About</div>
-  </div>
-</nav>
+  <header>
+    <a class="logo" href="index.html">pretty little steals</a>
+    <div class="tagline">Get the look without overpaying</div>
+  </header>
 
-<header class="hero">
-  <div class="hero-inner">
-    <div class="kicker">belle. by Pretty Little Steals</div>
+  <nav>
+    <ul>
+      ><a href="start-here.html">Start Here</a></li>
+      ><a href="#outfits">Outfits</a></li>
+      ><a href="saw-it-on-tv.html">Worn on TV</a></li>
+      ><a href="#deals">Deals</a></li>
+      ><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
 
-    <h1>The look was never the price tag.</h1>
-
-    <p class="sub">The dawn of disciplined taste.</p>
-
-    <div class="campaign">The Devil Wears belle.</div>
-
-    <p class="sub">The devil subscribes to Pretty Little Steals.</p>
-
-    <a class="cta">Enter The Dawn Window</a>
-
-    <div class="hero-image"></div>
-  </div>
-</header>
-
-<section class="section personas">
-  <div class="wrap">
-    <div class="label">The Personas</div>
-    <h2>Outfit formulas, built for her.</h2>
-
-    <div class="persona-grid">
-      <div class="persona"><h3>Sloane</h3><p>Quiet luxury. Never loud about it.</p></div>
-      <div class="persona"><h3>Soleil</h3><p>Effortless. Always has been.</p></div>
-      <div class="persona"><h3>Jade</h3><p>Dark. Precise. Ahead of you.</p></div>
-      <div class="persona"><h3>Vivienne</h3><p>She arrived. You noticed.</p></div>
-      <div class="persona"><h3>Maegan</h3><p>Modest. Never forgettable.</p></div>
-      <div class="persona"><h3>Noor</h3><p>Light. The expensive kind.</p></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Outfit sourcing + deal hunting</div>
+    <h1>Get the look without overpaying.</h1>
+    <p>Pretty Little Steals finds what to wear, where to buy it, and how to get the same vibe for less — from everyday outfits to the looks you saw on TV.</p>
+    <div class="hero-btns">
+      <a class="btn btn-dark" href="saw-it-on-tv.html">Worn on TV</a>
+      <a class="btn btn-outline" href="#deals">Today's Steals</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section receipt">
-  <div class="wrap receipt-inner">
-    <div>
-      <div class="label">The Receipt</div>
-      <div class="badge">LL<br>Approved.</div>
-    </div>
+  <!-- TODAY'S DEALS -->
+  <div id="deals" class="section">
+    <div class="section-label">Today's Steals</div>
+    <h2 class="section-title">Hot deals, curated daily.</h2>
+    <p class="section-sub">Hand-picked steals across fashion, beauty, and home. Updated every day so you never miss a deal.</p>
+    <div class="deal-grid">
 
-    <div>
-      <h2>The steal. The proof. The standard.</h2>
-
-      <div class="review-grid">
-        <div class="review">
-          <blockquote>“Found the exact same blazer for $34.”</blockquote>
-          <p>Sloane / saved $216</p>
-        </div>
-
-        <div class="review">
-          <blockquote>“The bag looked better in person.”</blockquote>
-          <p>Soleil / saved $142</p>
-        </div>
-
-        <div class="review">
-          <blockquote>“Same line. Better fabric.”</blockquote>
-          <p>Vivienne / saved $380</p>
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80" alt="Linen Blend Blazer" />
+        <div class="deal-card-body">
+          <span class="deal-badge">Fashion</span>
+          <h3>Linen Blend Blazer</h3>
+          <p>The structured work-to-weekend piece everyone needs. Neutral, polished, endlessly wearable.</p>
+          <div class="price-row">
+            <span class="price-sale">$28</span>
+            <span class="price-orig">$79</span>
+            <span class="price-save">Save 65%</span>
+          </div>
+          <a class="deal-link" href="shop.html">Get This Steal →</a>
         </div>
       </div>
+
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4b4459?w=400&q=80" alt="Graphic Tee — Our Pick" />
+        <div class="deal-card-body">
+          <span class="deal-badge exclusive">PLS Exclusive</span>
+          <h3>Varsity Vibes Graphic Tee</h3>
+          <p>Our own design. Soft, oversized, and styled to match the looks you love on screen.</p>
+          <div class="price-row">
+            <span class="price-sale">$24</span>
+          </div>
+          <a class="deal-link" href="shop.html">Shop Our Pick →</a>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&q=80" alt="Mini Shoulder Bag" />
+        <div class="deal-card-body">
+          <span class="deal-badge">Accessories</span>
+          <h3>Mini Crescent Shoulder Bag</h3>
+          <p>The bag style from your favorite reality show — for under $30.</p>
+          <div class="price-row">
+            <span class="price-sale">$26</span>
+            <span class="price-orig">$68</span>
+            <span class="price-save">Save 62%</span>
+          </div>
+          <a class="deal-link" href="shop.html">Get This Steal →</a>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&q=80" alt="Straight Leg Jeans" />
+        <div class="deal-card-body">
+          <span class="deal-badge">Fashion</span>
+          <h3>High-Rise Straight Leg Jeans</h3>
+          <p>The most flattering silhouette of the season, seen on every influencer and TV cast this year.</p>
+          <div class="price-row">
+            <span class="price-sale">$34</span>
+            <span class="price-orig">$89</span>
+            <span class="price-save">Save 62%</span>
+          </div>
+          <a class="deal-link" href="shop.html">Get This Steal →</a>
+        </div>
+      </div>
+
     </div>
   </div>
-</section>
 
-<section class="section window">
-  <div class="wrap window-inner">
-    <div>
-      <div class="label">Every Tuesday. 5:55am CT.</div>
-      <h2>The Dawn Window</h2>
-      <p>24 hours. One drop. gigi elle gets first access. So do you.</p>
+  <!-- WORN ON TV PREVIEW -->
+  <section class="tv-section">
+    <div class="tv-inner">
+      <div class="section-label">Worn on TV</div>
+      <h2 class="section-title">Screen looks, made shoppable.</h2>
+      <p class="section-sub">We ID the vibe, find the exact piece when possible, then build get-the-look options you can actually buy — including our own designs.</p>
+
+      <div class="tv-grid">
+
+        <div class="tv-card">
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&q=80" alt="Real Housewives Look" />
+          <div class="tv-card-body">
+            <div class="tv-show-tag">Real Housewives of Salt Lake City</div>
+            <h3>The Dinner Party Moment</h3>
+            <p>Satin slip, strappy heels, gold jewelry. Get the glam for under $90 total.</p>
+            <div class="tv-pieces">
+              <div class="tv-piece">
+                <span class="tv-piece-name">Satin Slip Dress</span>
+                <a class="tv-piece-link" href="shop.html">Shop steal →</a>
+              </div>
+              <div class="tv-piece">
+                <span class="tv-piece-name">Strappy Heels</span>
+                <a class="tv-piece-link" href="shop.html">Shop steal →</a>
+              </div>
+              <div class="tv-piece">
+                <span class="tv-piece-name">Housewives Era Tee <span class="our-pick-tag">PLS Pick</span></span>
+                <a class="tv-piece-link our-pick" href="shop.html">Our store →</a>
+              </div>
+            </div>
+            <a class="tv-cta" href="saw-it-on-tv.html">See Full Look →</a>
+          </div>
+        </div>
+
+        <div class="tv-card">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80" alt="Love Is Blind Look" />
+          <div class="tv-card-body">
+            <div class="tv-show-tag">Love Is Blind</div>
+            <h3>The Pod Date Outfit</h3>
+            <p>Cozy chic — elevated loungewear energy that photographs beautifully.</p>
+            <div class="tv-pieces">
+              <div class="tv-piece">
+                <span class="tv-piece-name">Ribbed Knit Set</span>
+                <a class="tv-piece-link" href="shop.html">Shop steal →</a>
+              </div>
+              <div class="tv-piece">
+                <span class="tv-piece-name">Gold Hoop Earrings</span>
+                <a class="tv-piece-link" href="shop.html">Shop steal →</a>
+              </div>
+              <div class="tv-piece">
+                <span class="tv-piece-name">Love Is Blind Crewneck <span class="our-pick-tag">PLS Pick</span></span>
+                <a class="tv-piece-link our-pick" href="shop.html">Our store →</a>
+              </div>
+            </div>
+            <a class="tv-cta" href="saw-it-on-tv.html">See Full Look →</a>
+          </div>
+        </div>
+
+        <div class="tv-card">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=80" alt="Vanderpump Look" />
+          <div class="tv-card-body">
+            <div class="tv-show-tag">Vanderpump Rules</div>
+            <h3>The Going Out Outfit</h3>
+            <p>Mini dress, block heels, and a going-out bag. Full look under $75.</p>
+            <div class="tv-pieces">
+              <div class="tv-piece">
+                <span class="tv-piece-name">Sequin Mini Dress</span>
+                <a class="tv-piece-link" href="shop.html">Shop steal →</a>
+              </div>
+              <div class="tv-piece">
+                <span class="tv-piece-name">Block Heel Mules</span>
+                <a class="tv-piece-link" href="shop.html">Shop steal →</a>
+              </div>
+              <div class="tv-piece">
+                <span class="tv-piece-name">Pump Rules Graphic Tee <span class="our-pick-tag">PLS Pick</span></span>
+                <a class="tv-piece-link our-pick" href="shop.html">Our store →</a>
+              </div>
+            </div>
+            <a class="tv-cta" href="saw-it-on-tv.html">See Full Look →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a class="btn btn-outline" style="border-color:#c8956c; color:#c8956c;" href="saw-it-on-tv.html">See All TV Looks →</a>
+      </div>
     </div>
+  </section>
 
-    <div>
-      <input placeholder="your email. nothing else.">
-      <a class="cta">I want first access.</a>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <p><strong>Pretty Little Steals. by belle.</strong></p>
-  <p>gigi elle subscribes.</p>
-  <p>Instagram / TikTok / Pinterest / Threads /</p>
-  <p>© 2026 belle. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+  <!-- OUTFITS SECTION -->
+  <div id="outfits" class="section">
+    <div class="section-label">Outfit Formulas</div>
+    <h2 class="section-title">Start with what to wear.</h2>
+    <p class="section-sub">Every edit gives you the outfit, the original idea, and a get-it-for-less path so you can shop smarter.</p>
+    <div class="deal-grid">
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&q=80" alt="Everyday School Outfit" />
+        <div class="deal-card-body">
+          <span class="deal-badge">Everyday</span>
+          <h3>Everyday School Outfit</h3>
+          <p>Hoodie, denim, sneakers — easy, balanced, repeatable.</p>
+          <a class="deal-link" href="outfit-everyday-school.html">Get the Look →</a>
+        </div>
+      </div>
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w
