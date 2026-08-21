@@ -1,5 +1,5 @@
 status=pass
-verified_commit=965b427f08018e80f1510582429800de4a1cf9ec
-preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/965b427f08018e80f1510582429800de4a1cf9ec/identity-signal/index.html
+verified_commit=a4b036e3071ba4293404459ecd75d6b935bd6303
+preview_url=https://rawcdn.githack.com/brookiecookie-lab/belle.site/a4b036e3071ba4293404459ecd75d6b935bd6303/identity-signal/index.html
 --- browser log ---
-Browser CI passed against https://raw.githack.com/brookiecookie-lab/belle.site/965b427f08018e80f1510582429800de4a1cf9ec: full flow, native keyboard back, focus orientation, WCAG axe scans, adaptive result, correction, origin-backed save/delete, bridge routes, overclaim scan, and mobile overflow.
+Browser CI passed against https://rawcdn.githack.com/brookiecookie-lab/belle.site/a4b036e3071ba4293404459ecd75d6b935bd6303: full flow, native keyboard back, focus orientation, WCAG axe scans, adaptive result, correction, origin-backed save/delete, bridge routes, overclaim scan, and mobile overflow.
