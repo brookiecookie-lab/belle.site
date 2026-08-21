@@ -1,0 +1,26 @@
+status=fail
+verified_commit=6d22a3f5e786f8e2becc84497664e7d40018e901
+preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/6d22a3f5e786f8e2becc84497664e7d40018e901/identity-signal/index.html
+--- browser log ---
+node:internal/modules/cjs/loader:1433
+  throw err;
+  ^
+
+Error: Cannot find module 'playwright'
+Require stack:
+- /tmp/preview-browser-ci.js
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1430:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1040:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1045:22)
+    at Function._load (node:internal/modules/cjs/loader:1216:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Module.require (node:internal/modules/cjs/loader:1527:12)
+    at require (node:internal/modules/helpers:147:16)
+    at Object.<anonymous> (/tmp/preview-browser-ci.js:2:18)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/tmp/preview-browser-ci.js' ]
+}
+
+Node.js v22.23.2
