@@ -1,0 +1,96 @@
+name: Import Identity Signal Preview
+
+on:
+  push:
+    branches:
+      - identity-signal-preview
+    paths:
+      - IMPORT_URL.txt
+
+permissions:
+  contents: write
+
+jobs:
+  import-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout preview branch
+        uses: actions/checkout@v4
+        with:
+          ref: identity-signal-preview
+
+      - name: Download exact private-branch export
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL=$(tr -d '\r\n' < IMPORT_URL.txt)
+          mkdir -p /tmp/identity-export
+          curl --fail --location --silent --show-error --retry 30 --retry-delay 2 "$URL" --output /tmp/identity-export/preview.zip
+          unzip -q -o /tmp/identity-export/preview.zip -d /tmp/identity-export/src
+
+      - name: Prepare isolated public preview runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf identity-signal journal shop styles.css engine.js app.js package.json browser-ci.js
+          cp -R /tmp/identity-export/src/identity-signal .
+          cp -R /tmp/identity-export/src/journal .
+          mkdir -p shop
+          cp -R /tmp/identity-export/src/shop/world-prescription shop/
+          cp /tmp/identity-export/src/styles.css .
+          cp /tmp/identity-export/src/engine.js .
+          cp /tmp/identity-export/src/app.js .
+          cp /tmp/identity-export/src/package.json .
+          cp /tmp/identity-export/src/browser-ci.js .
+
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('identity-signal/index.html')
+          s=p.read_text()
+          s=s.replace('href="/styles.css"','href="../styles.css"')
+          s=s.replace('src="/engine.js"','src="../engine.js"')
+          s=s.replace('src="/app.js"','src="../app.js"')
+          s=s.replace('href="/identity-signal/"','href="./"')
+          s=s.replace('href="/shop/world-prescription/"','href="../shop/world-prescription/index.html"')
+          s=s.replace('href="/journal/"','href="../journal/index.html"')
+          p.write_text(s)
+
+          p=Path('journal/index.html')
+          s=p.read_text().replace('href="/styles.css"','href="../styles.css"').replace('href="/identity-signal/"','href="../identity-signal/index.html"')
+          p.write_text(s)
+
+          p=Path('shop/world-prescription/index.html')
+          s=p.read_text().replace('href="/styles.css"','href="../../styles.css"').replace('href="/identity-signal/"','href="../../identity-signal/index.html"')
+          p.write_text(s)
+
+          Path('index.html').write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=identity-signal/index.html"><title>Identity Signal Preview</title></head><body><a href="identity-signal/index.html">Open Identity Signal</a></body></html>')
+          PY
+
+      - name: Commit compiled preview only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add identity-signal journal shop styles.css engine.js app.js package.json browser-ci.js index.html
+          git commit -m 'preview: publish exact Identity Signal runtime'
+          git push origin HEAD:identity-signal-preview
+          echo "PREVIEW_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Verify immutable HTTPS preview in Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install
+          npx playwright install --with-deps chromium
+          cp browser-ci.js /tmp/preview-browser-ci.js
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('/tmp/preview-browser-ci.js')
+          s=p.read_text()
+          s=s.replace("`${base}/identity-signal/`", "`${base}/identity-signal/index.html`")
+          s=s.replace("`${base}/journal/`", "`${base}/journal/index.html`")
+          s=s.replace("`${base}/shop/world-prescription/`", "`${base}/shop/world-prescription/index.html`")
+          p.write_text(s)
+          PY
+          BASE_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js
