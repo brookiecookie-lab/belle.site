@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf identity-signal journal shop styles.css engine.js app.js package.json browser-ci.js PREVIEW_VERIFIED.txt
+          rm -rf identity-signal journal shop styles.css engine.js app.js package.json browser-ci.js PREVIEW_VERIFIED.txt PREVIEW_STATUS.txt
           cp -R /tmp/identity-export/src/identity-signal .
           cp -R /tmp/identity-export/src/journal .
           mkdir -p shop
@@ -92,6 +92,8 @@ jobs:
           from pathlib import Path
           p=Path('/tmp/preview-browser-ci.js')
           s=p.read_text()
+          s=s.replace("const desktopContext=await browser.newContext({viewport:{width:1440,height:1000}});", "const desktopContext=await browser.newContext({viewport:{width:1440,height:1000}});\n  await desktopContext.addCookies([{name:'__Http-phish',value:'1',domain:'raw.githack.com',path:'/'}]);")
+          s=s.replace("const mobileContext=await browser.newContext({viewport:{width:390,height:844}});", "const mobileContext=await browser.newContext({viewport:{width:390,height:844}});\n  await mobileContext.addCookies([{name:'__Http-phish',value:'1',domain:'raw.githack.com',path:'/'}]);")
           s=s.replace("`${base}/identity-signal/`", "`${base}/identity-signal/index.html`")
           s=s.replace("`${base}/journal/`", "`${base}/journal/index.html`")
           s=s.replace("`${base}/shop/world-prescription/`", "`${base}/shop/world-prescription/index.html`")
@@ -99,7 +101,30 @@ jobs:
           s=s.replace("getAttribute('href'),'/journal/'", "getAttribute('href'),'../journal/index.html'")
           p.write_text(s)
           PY
-          BASE_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js
+
+          set +e
+          BASE_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js > /tmp/preview-browser.log 2>&1
+          STATUS=$?
+          set -e
+          cat /tmp/preview-browser.log
+
+          if [ "$STATUS" -eq 0 ]; then
+            RESULT="pass"
+          else
+            RESULT="fail"
+          fi
+          {
+            echo "status=$RESULT"
+            echo "verified_commit=$PREVIEW_SHA"
+            echo "preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}/identity-signal/index.html"
+            echo "--- browser log ---"
+            tail -n 80 /tmp/preview-browser.log
+          } > PREVIEW_STATUS.txt
+          git add PREVIEW_STATUS.txt
+          git commit -m "preview: record immutable HTTPS verification $RESULT" || true
+          git push origin HEAD:identity-signal-preview
+
+          exit "$STATUS"
 
       - name: Record verified immutable preview
         shell: bash
