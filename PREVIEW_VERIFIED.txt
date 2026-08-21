@@ -1,0 +1,2 @@
+verified_commit=965b427f08018e80f1510582429800de4a1cf9ec
+preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/965b427f08018e80f1510582429800de4a1cf9ec/identity-signal/index.html
