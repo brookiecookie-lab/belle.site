@@ -95,6 +95,8 @@ jobs:
           s=s.replace("`${base}/identity-signal/`", "`${base}/identity-signal/index.html`")
           s=s.replace("`${base}/journal/`", "`${base}/journal/index.html`")
           s=s.replace("`${base}/shop/world-prescription/`", "`${base}/shop/world-prescription/index.html`")
+          s=s.replace("getAttribute('href'),'/shop/world-prescription/'", "getAttribute('href'),'../shop/world-prescription/index.html'")
+          s=s.replace("getAttribute('href'),'/journal/'", "getAttribute('href'),'../journal/index.html'")
           p.write_text(s)
           PY
           BASE_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js
