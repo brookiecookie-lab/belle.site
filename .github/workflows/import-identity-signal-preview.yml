@@ -103,7 +103,7 @@ jobs:
           PY
 
           set +e
-          BASE_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js > /tmp/preview-browser.log 2>&1
+          NODE_PATH="$GITHUB_WORKSPACE/node_modules" BASE_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js > /tmp/preview-browser.log 2>&1
           STATUS=$?
           set -e
           cat /tmp/preview-browser.log
