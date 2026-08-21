@@ -1,6 +1,6 @@
 status=fail
-verified_commit=6d22a3f5e786f8e2becc84497664e7d40018e901
-preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/6d22a3f5e786f8e2becc84497664e7d40018e901/identity-signal/index.html
+verified_commit=74fb2623e023b01bd48764e617a25de95ed0e1a5
+preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/74fb2623e023b01bd48764e617a25de95ed0e1a5/identity-signal/index.html
 --- browser log ---
 node:internal/modules/cjs/loader:1433
   throw err;
