@@ -1,9 +1,5 @@
-status=fail
-verified_commit=9d7ccd69cfd7ae8e910b9abdc4c2617f1f11eb95
-preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/9d7ccd69cfd7ae8e910b9abdc4c2617f1f11eb95/identity-signal/index.html
+status=pass
+verified_commit=965b427f08018e80f1510582429800de4a1cf9ec
+preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/965b427f08018e80f1510582429800de4a1cf9ec/identity-signal/index.html
 --- browser log ---
-browserContext.addCookies: Protocol error (Storage.setCookies): Invalid cookie fields
-    at /tmp/preview-browser-ci.js:19:24 {
-  log: [],
-  name: 'Error'
-}
+Browser CI passed against https://raw.githack.com/brookiecookie-lab/belle.site/965b427f08018e80f1510582429800de4a1cf9ec: full flow, native keyboard back, focus orientation, WCAG axe scans, adaptive result, correction, origin-backed save/delete, bridge routes, overclaim scan, and mobile overflow.
