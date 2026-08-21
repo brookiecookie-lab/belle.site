@@ -92,8 +92,9 @@ jobs:
           from pathlib import Path
           p=Path('/tmp/preview-browser-ci.js')
           s=p.read_text()
-          s=s.replace("const desktopContext=await browser.newContext({viewport:{width:1440,height:1000}});", "const desktopContext=await browser.newContext({viewport:{width:1440,height:1000}});\n  await desktopContext.addCookies([{name:'__Http-phish',value:'1',domain:'raw.githack.com',path:'/'}]);")
-          s=s.replace("const mobileContext=await browser.newContext({viewport:{width:390,height:844}});", "const mobileContext=await browser.newContext({viewport:{width:390,height:844}});\n  await mobileContext.addCookies([{name:'__Http-phish',value:'1',domain:'raw.githack.com',path:'/'}]);")
+          cookie="[{name:'__Http-phish',value:'1',url:'https://raw.githack.com',secure:true,httpOnly:true,sameSite:'Lax'}]"
+          s=s.replace("const desktopContext=await browser.newContext({viewport:{width:1440,height:1000}});", f"const desktopContext=await browser.newContext({{viewport:{{width:1440,height:1000}}}});\n  await desktopContext.addCookies({cookie});")
+          s=s.replace("const mobileContext=await browser.newContext({viewport:{width:390,height:844}});", f"const mobileContext=await browser.newContext({{viewport:{{width:390,height:844}}}});\n  await mobileContext.addCookies({cookie});")
           s=s.replace("`${base}/identity-signal/`", "`${base}/identity-signal/index.html`")
           s=s.replace("`${base}/journal/`", "`${base}/journal/index.html`")
           s=s.replace("`${base}/shop/world-prescription/`", "`${base}/shop/world-prescription/index.html`")
