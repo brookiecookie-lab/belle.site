@@ -66,15 +66,19 @@ jobs:
           Path('index.html').write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=identity-signal/index.html"><title>Identity Signal Preview</title></head><body><a href="identity-signal/index.html">Open Identity Signal</a></body></html>')
           PY
 
-      - name: Commit compiled preview only
+      - name: Commit compiled preview only when changed
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add identity-signal journal shop styles.css engine.js app.js package.json browser-ci.js index.html
-          git commit -m 'preview: publish exact Identity Signal runtime'
-          git push origin HEAD:identity-signal-preview
+          if git diff --cached --quiet; then
+            echo "Compiled runtime unchanged; verifying current branch head."
+          else
+            git commit -m 'preview: publish exact Identity Signal runtime'
+            git push origin HEAD:identity-signal-preview
+          fi
           echo "PREVIEW_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
       - name: Verify immutable HTTPS preview in Chromium
@@ -102,5 +106,9 @@ jobs:
           PREVIEW_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}/identity-signal/index.html"
           printf 'verified_commit=%s\npreview_url=%s\n' "$PREVIEW_SHA" "$PREVIEW_URL" > PREVIEW_VERIFIED.txt
           git add PREVIEW_VERIFIED.txt
-          git commit -m 'preview: record verified immutable Identity Signal URL'
-          git push origin HEAD:identity-signal-preview
+          if git diff --cached --quiet; then
+            echo "Verification marker already current."
+          else
+            git commit -m 'preview: record verified immutable Identity Signal URL'
+            git push origin HEAD:identity-signal-preview
+          fi
