@@ -1,0 +1,14 @@
+{
+  "name": "identity-signal-v1",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "python3 -m http.server 4173",
+    "test": "node test-engine.js && node test-distribution.js && python3 qa-static.py",
+    "test:browser": "node browser-ci.js"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "playwright": "1.62.1"
+  }
+}

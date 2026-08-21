@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="A five-question read on one pattern shaping how you want your world to feel." />
+  <title>Identity Signal — dentityOS™</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" aria-label="Primary">
+    <a class="wordmark" href="./" aria-label="dentityOS home">dentityOS™</a>
+    <span class="product-label">Identity Signal</span>
+  </header>
+
+  <main id="main" class="shell" tabindex="-1">
+    <section id="screen-intro" class="screen is-active" aria-labelledby="intro-title">
+      <div class="eyebrow">FREE · ABOUT 2 MINUTES</div>
+      <h1 id="intro-title">One signal.<br />Not your whole identity.</h1>
+      <p class="lede">Answer five high-information questions. We’ll show one pattern your answers suggest, why we think it, and one way to use it across your world.</p>
+      <div class="trust-strip" role="list" aria-label="Experience boundaries">
+        <span role="listitem">No email required</span><span role="listitem">No diagnosis</span><span role="listitem">No permanent type</span>
+      </div>
+      <button class="button button-primary" id="start-btn" type="button">Begin the signal</button>
+      <p class="microcopy">Your answers stay in this browser session unless you explicitly choose to save them later.</p>
+    </section>
+
+    <section id="screen-quiz" class="screen" aria-labelledby="question-title">
+      <div class="progress-row">
+        <span id="progress-text">1 of 5</span>
+        <div class="progress-track" id="progress-track" role="progressbar" aria-label="Identity Signal progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"><div id="progress-fill" class="progress-fill"></div></div>
+      </div>
+      <div id="question-wrap"></div>
+      <div class="quiz-actions">
+        <button class="button button-ghost" id="back-btn" type="button">Back</button>
+        <button class="button button-primary" id="next-btn" type="button" disabled>Continue</button>
+      </div>
+      <p id="question-help" class="microcopy" aria-live="polite"></p>
+    </section>
+
+    <section id="screen-result" class="screen" aria-labelledby="result-heading" aria-live="polite">
+      <div class="eyebrow">YOUR CURRENT SIGNAL</div>
+      <h1 id="result-heading" tabindex="-1"></h1>
+      <div class="signal-strength"><strong id="strength-label"></strong><span id="strength-copy"></span></div>
+
+      <div class="result-grid">
+        <article class="result-card">
+          <h2>Why we think that</h2>
+          <ul id="evidence-list"></ul>
+        </article>
+        <article class="result-card emphasis">
+          <h2>One governing principle</h2>
+          <p id="principle-copy" class="principle"></p>
+        </article>
+        <article class="result-card focus-card">
+          <h2>Start where the mismatch feels biggest</h2>
+          <p><strong id="focus-label"></strong></p>
+          <p id="focus-copy"></p>
+        </article>
+        <article class="result-card">
+          <h2>Try it across your world</h2>
+          <div id="translation-copy"></div>
+        </article>
+        <article class="result-card boundary">
+          <h2>What this doesn’t tell us</h2>
+          <p>Five answers are not enough to determine your complete style system, color behavior, beauty direction, environment, public presence, sensory needs, constraints, contradictions, or how those pieces should work together.</p>
+        </article>
+      </div>
+
+      <section class="correction" aria-labelledby="correction-title">
+        <h2 id="correction-title">Did we get the direction right?</h2>
+        <div class="segmented" role="group" aria-label="Result accuracy">
+          <button type="button" data-feedback="yes">Yes — this tracks</button>
+          <button type="button" data-feedback="partly">Partly</button>
+          <button type="button" data-feedback="no">No — this misses me</button>
+        </div>
+        <div id="correction-detail" hidden>
+          <p>What feels wrong?</p>
+          <div class="chips" id="correction-options"></div>
+        </div>
+        <p id="feedback-status" class="microcopy" aria-live="polite"></p>
+      </section>
+
+      <section class="bridge" aria-labelledby="bridge-title">
+        <div>
+          <div class="eyebrow">GO DEEPER</div>
+          <h2 id="bridge-title">Build this into a World Prescription.</h2>
+          <p>Identity Signal found one direction. World Prescription tests it against more of your preferences, aversions, contexts, and constraints, then turns the stronger pattern into a usable system.</p>
+        </div>
+        <div class="bridge-actions">
+          <a class="button button-primary" href="../shop/world-prescription/index.html">Explore World Prescription</a>
+          <a class="button button-ghost" href="../journal/index.html">Keep exploring in the Journal</a>
+        </div>
+      </section>
+
+      <section class="save-panel" aria-labelledby="save-title">
+        <h2 id="save-title">Want to keep this signal?</h2>
+        <p>You have already received the complete free result. Saving is optional.</p>
+        <div class="save-actions">
+          <button class="button button-secondary" id="save-device" type="button">Save on this device</button>
+          <a class="button button-ghost" id="email-result" href="#">Email my result</a>
+          <button class="button button-link" id="decline-save" type="button">No thanks</button>
+          <button class="button button-link" id="delete-save" type="button">Delete saved result</button>
+        </div>
+        <p id="save-status" class="microcopy" aria-live="polite"></p>
+      </section>
+
+      <button class="button button-link restart" id="restart-btn" type="button">Retake the five questions</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Identity Signal is a non-clinical identity-direction experience. Automated interpretation may assist with the result, but you can reject or correct it. It does not diagnose psychological, medical, or nervous-system conditions.</p>
+  </footer>
+  <script src="../engine.js" defer></script>
+  <script src="../app.js" defer></script>
+</body>
+</html>
