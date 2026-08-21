@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf identity-signal journal shop styles.css engine.js app.js package.json browser-ci.js
+          rm -rf identity-signal journal shop styles.css engine.js app.js package.json browser-ci.js PREVIEW_VERIFIED.txt
           cp -R /tmp/identity-export/src/identity-signal .
           cp -R /tmp/identity-export/src/journal .
           mkdir -p shop
@@ -94,3 +94,13 @@ jobs:
           p.write_text(s)
           PY
           BASE_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js
+
+      - name: Record verified immutable preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          PREVIEW_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}/identity-signal/index.html"
+          printf 'verified_commit=%s\npreview_url=%s\n' "$PREVIEW_SHA" "$PREVIEW_URL" > PREVIEW_VERIFIED.txt
+          git add PREVIEW_VERIFIED.txt
+          git commit -m 'preview: record verified immutable Identity Signal URL'
+          git push origin HEAD:identity-signal-preview
