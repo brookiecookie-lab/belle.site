@@ -81,7 +81,7 @@ jobs:
           fi
           echo "PREVIEW_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
-      - name: Verify immutable HTTPS preview in Chromium
+      - name: Verify immutable production-CDN HTTPS preview in Chromium
         shell: bash
         run: |
           set -euo pipefail
@@ -92,7 +92,7 @@ jobs:
           from pathlib import Path
           p=Path('/tmp/preview-browser-ci.js')
           s=p.read_text()
-          cookie="[{name:'__Http-phish',value:'1',url:'https://raw.githack.com',secure:true,httpOnly:true,sameSite:'Lax'}]"
+          cookie="[{name:'__Http-phish',value:'1',url:'https://rawcdn.githack.com',secure:true,httpOnly:true,sameSite:'Lax'}]"
           s=s.replace("const desktopContext=await browser.newContext({viewport:{width:1440,height:1000}});", f"const desktopContext=await browser.newContext({{viewport:{{width:1440,height:1000}}}});\n  await desktopContext.addCookies({cookie});")
           s=s.replace("const mobileContext=await browser.newContext({viewport:{width:390,height:844}});", f"const mobileContext=await browser.newContext({{viewport:{{width:390,height:844}}}});\n  await mobileContext.addCookies({cookie});")
           s=s.replace("`${base}/identity-signal/`", "`${base}/identity-signal/index.html`")
@@ -104,7 +104,7 @@ jobs:
           PY
 
           set +e
-          NODE_PATH="$GITHUB_WORKSPACE/node_modules" BASE_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js > /tmp/preview-browser.log 2>&1
+          NODE_PATH="$GITHUB_WORKSPACE/node_modules" BASE_URL="https://rawcdn.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}" node /tmp/preview-browser-ci.js > /tmp/preview-browser.log 2>&1
           STATUS=$?
           set -e
           cat /tmp/preview-browser.log
@@ -117,26 +117,26 @@ jobs:
           {
             echo "status=$RESULT"
             echo "verified_commit=$PREVIEW_SHA"
-            echo "preview_url=https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}/identity-signal/index.html"
+            echo "preview_url=https://rawcdn.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}/identity-signal/index.html"
             echo "--- browser log ---"
             tail -n 80 /tmp/preview-browser.log
           } > PREVIEW_STATUS.txt
           git add PREVIEW_STATUS.txt
-          git commit -m "preview: record immutable HTTPS verification $RESULT" || true
+          git commit -m "preview: record production-CDN HTTPS verification $RESULT" || true
           git push origin HEAD:identity-signal-preview
 
           exit "$STATUS"
 
-      - name: Record verified immutable preview
+      - name: Record verified immutable production preview
         shell: bash
         run: |
           set -euo pipefail
-          PREVIEW_URL="https://raw.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}/identity-signal/index.html"
+          PREVIEW_URL="https://rawcdn.githack.com/brookiecookie-lab/belle.site/${PREVIEW_SHA}/identity-signal/index.html"
           printf 'verified_commit=%s\npreview_url=%s\n' "$PREVIEW_SHA" "$PREVIEW_URL" > PREVIEW_VERIFIED.txt
           git add PREVIEW_VERIFIED.txt
           if git diff --cached --quiet; then
             echo "Verification marker already current."
           else
-            git commit -m 'preview: record verified immutable Identity Signal URL'
+            git commit -m 'preview: record verified immutable production Identity Signal URL'
             git push origin HEAD:identity-signal-preview
           fi
