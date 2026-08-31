@@ -1,0 +1,17 @@
+{
+  "status": "ACTIVE",
+  "canonical_policy_id": "ESA-REVIEW-EXECUTION-PROVENANCE-001",
+  "canonical_policy_version": "1.0",
+  "canonical_repository": "brookiecookie-lab/content-ops-starter",
+  "canonical_path": "external-specialist-agents/governance/ESA-REVIEW-EXECUTION-PROVENANCE-001.md",
+  "canonical_git_blob_sha": "2e637488c2542cd7b01fb2e155a28e967ff9d4ac",
+  "enforcement_profile_id": "ESA-REVIEW-EXECUTION-ENFORCEMENT-001",
+  "local_validator": ".governance/validate_review_execution.py",
+  "local_workflow": ".github/workflows/review-execution-provenance-gate.yml",
+  "evidence_directory": ".governance/review-execution-evidence",
+  "installed_at": "2026-08-31",
+  "retroactive_audit_required": true,
+  "branch_protection_required": true,
+  "branch_protection_verified": false,
+  "branch_protection_status": "NOT_PROVEN"
+}
