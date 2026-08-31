@@ -5,6 +5,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: review-execution-provenance-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -36,6 +40,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          current_main="$(git ls-remote origin refs/heads/main | cut -f1)"
+          if [ "$current_main" != "$GITHUB_SHA" ]; then
+            echo "Superseded run: current main is $current_main; this run is $GITHUB_SHA. No authority-ref movement."
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git push origin "HEAD:refs/heads/governance-cleared" --force
