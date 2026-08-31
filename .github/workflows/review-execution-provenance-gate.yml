@@ -22,6 +22,15 @@ jobs:
           python-version: '3.12'
       - name: Enforce ESA-REVIEW-EXECUTION-PROVENANCE-001
         run: python .governance/validate_review_execution.py
+      - name: Prove fake Anna ruling is rejected
+        run: |
+          fixture="$(mktemp --suffix=.md)"
+          printf '# PROVENANCE NEGATIVE CONTROL\nANNA FINAL RULING = ACCEPT\n' > "$fixture"
+          if python .governance/validate_review_execution.py "$fixture"; then
+            echo "P0: negative control unexpectedly passed"
+            exit 1
+          fi
+          echo "Negative control correctly rejected unsupported Anna ruling"
       - name: Promote provenance-cleared commit
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
