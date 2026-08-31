@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 POLICY_ID = "ESA-REVIEW-EXECUTION-PROVENANCE-001"
+AUTHORITY_REF = "governance-cleared"
 EVIDENCE_DIR = Path(".governance/review-execution-evidence")
 IMPLEMENTATION_EXEMPT_PATHS = {
     Path(".governance/validate_review_execution.py"),
@@ -27,6 +28,14 @@ INTERNAL_LABELS = (
     "INTERNAL_ANALYSIS_ONLY",
     "INTERNAL QA ANALYSIS",
     "INTERNAL RED-TEAM ANALYSIS",
+)
+
+FORENSIC_REQUIRED_MARKERS = (
+    "**Status:** INTERNAL FORENSIC AUDIT / NOT AN INDEPENDENT REVIEW",
+    "**Authoring class:** `SAME_ORIGIN_INTERNAL_ANALYSIS`",
+    "`FORENSIC AUDIT ≠ INDEPENDENT QA`",
+    "`FORENSIC AUDIT ≠ ANNA REVIEW`",
+    "`FORENSIC AUDIT DOES NOT CLOSE ANY REOPENED GATE`",
 )
 
 BANNED_MECHANISM_TERMS = (
@@ -83,21 +92,29 @@ GOVERNED_HINTS = (
 TEXT_SUFFIXES = {".md", ".txt", ".json", ".yaml", ".yml"}
 
 
+def _git_output(args):
+    return subprocess.check_output(["git", *args], text=True, stderr=subprocess.STDOUT)
+
+
 def changed_files():
     supplied = [Path(x) for x in sys.argv[1:] if x.strip()]
     if supplied:
         return supplied
     event = os.environ.get("GITHUB_EVENT_NAME", "")
     base = os.environ.get("GITHUB_BASE_REF", "")
-    try:
-        if event == "pull_request" and base:
-            subprocess.run(["git", "fetch", "origin", base, "--depth=1"], check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            out = subprocess.check_output(["git", "diff", "--name-only", f"origin/{base}...HEAD"], text=True)
-        else:
-            out = subprocess.check_output(["git", "diff", "--name-only", "HEAD^", "HEAD"], text=True)
+    if event == "pull_request" and base:
+        subprocess.run(["git", "fetch", "origin", base, "--depth=1"], check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        out = _git_output(["diff", "--name-only", f"origin/{base}...HEAD"])
         return [Path(x) for x in out.splitlines() if x.strip()]
-    except Exception:
-        return []
+    if event == "push":
+        subprocess.run(["git", "fetch", "origin", AUTHORITY_REF], check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        verify = subprocess.run(["git", "rev-parse", "--verify", f"refs/remotes/origin/{AUTHORITY_REF}"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if verify.returncode != 0:
+            raise RuntimeError(f"required authority ref origin/{AUTHORITY_REF} is unavailable; refusing fail-open validation")
+        out = _git_output(["diff", "--name-only", f"origin/{AUTHORITY_REF}...HEAD"])
+        return [Path(x) for x in out.splitlines() if x.strip()]
+    out = _git_output(["diff", "--name-only", "HEAD^", "HEAD"])
+    return [Path(x) for x in out.splitlines() if x.strip()]
 
 
 def is_governed(path: Path, text: str):
@@ -105,6 +122,13 @@ def is_governed(path: Path, text: str):
     if any(h in p for h in GOVERNED_HINTS):
         return True
     return any(rx.search(text) for rx in CONTROLLED_PATTERNS)
+
+
+def is_reopen_only_forensic_record(path: Path, text: str):
+    name = path.name.upper()
+    if "FORENSIC-AUDIT" not in name:
+        return False
+    return all(marker in text for marker in FORENSIC_REQUIRED_MARKERS)
 
 
 def find_evidence_ids(text: str):
@@ -148,18 +172,40 @@ def validate_evidence(path: Path, data: dict, claim_text: str):
     return errors
 
 
+def all_text_files():
+    for root, dirs, files in os.walk("."):
+        dirs[:] = [d for d in dirs if d not in {".git", "node_modules"}]
+        for filename in files:
+            path = Path(root) / filename
+            try:
+                rel = path.relative_to(Path("."))
+            except ValueError:
+                rel = path
+            if rel.suffix.lower() in TEXT_SUFFIXES:
+                yield rel
+
+
 def main():
-    files = changed_files()
+    try:
+        files = changed_files()
+    except Exception as e:
+        print("P0 REVIEW EXECUTION / PROVENANCE GATE: FAIL")
+        print(f"- unable to determine complete changed-file set: {e}")
+        sys.exit(1)
     failures = []
     checked = 0
-    for path in files:
+    forensic_records = 0
+    evidence_changed = any(EVIDENCE_DIR in path.parents or path == EVIDENCE_DIR for path in files)
+    candidate_files = list(dict.fromkeys(list(all_text_files()) if evidence_changed else files))
+    for path in candidate_files:
         if path in IMPLEMENTATION_EXEMPT_PATHS or EVIDENCE_DIR in path.parents:
             continue
         if not path.exists() or path.suffix.lower() not in TEXT_SUFFIXES:
             continue
         try:
-            text = path.read_text(encoding="utf-8", errors="replace")
-        except Exception:
+            text = path.read_text(encoding="utf-8", errors="strict")
+        except Exception as e:
+            failures.append(f"{path}: unable to read governed text safely: {e}")
             continue
         if not is_governed(path, text):
             continue
@@ -167,6 +213,9 @@ def main():
         if not matched:
             continue
         checked += 1
+        if is_reopen_only_forensic_record(path, text):
+            forensic_records += 1
+            continue
         if any(label in text for label in INTERNAL_LABELS) and not re.search(r"\b(ANNA\s+FINAL\s+RULING|INDEPENDENT\s+QA\s*=\s*PASS|DOWNSTREAM\s+ACTIVATION\s*=\s*AUTHORIZED|CERTIFIED|SIGNED\s+OFF)\b", text, re.I):
             continue
         eids = find_evidence_ids(text)
@@ -188,13 +237,12 @@ def main():
         if not valid_one:
             failures.append(f"{path}: no valid execution evidence record backs the controlled claim")
             failures.extend(evidence_errors)
-
     if failures:
         print("P0 REVIEW EXECUTION / PROVENANCE GATE: FAIL")
         for f in failures:
             print(f"- {f}")
         sys.exit(1)
-    print(f"REVIEW EXECUTION / PROVENANCE GATE: PASS ({checked} controlled changed files checked)")
+    print(f"REVIEW EXECUTION / PROVENANCE GATE: PASS ({checked} controlled files checked; {forensic_records} reopen-only forensic records)")
 
 
 if __name__ == "__main__":
