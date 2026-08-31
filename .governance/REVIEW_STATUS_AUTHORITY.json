@@ -1,0 +1,14 @@
+{
+  "status": "ACTIVE",
+  "canonical_policy_id": "ESA-REVIEW-EXECUTION-PROVENANCE-001",
+  "enforcement_profile_id": "ESA-REVIEW-EXECUTION-ENFORCEMENT-002",
+  "authoritative_review_status_ref": "governance-cleared",
+  "promotion_authority": "GitHub Actions workflow .github/workflows/review-execution-provenance-gate.yml only",
+  "main_review_status_authority": false,
+  "main_becomes_status_authoritative_only_when_sha_equals_authoritative_ref": true,
+  "on_sha_mismatch": "PROVENANCE_HOLD_NO_REVIEW_STATUS_PROPAGATION",
+  "assistant_manual_update_of_authoritative_ref": "PROHIBITED_P0",
+  "downstream_requirement": "Consume consequential review, QA, Anna, certification, sign-off, and activation status only from governance-cleared or after verifying exact SHA equality with governance-cleared.",
+  "github_plan_constraint": "Private-repository rulesets are unavailable on the current GitHub plan; GitHub API returned Upgrade to GitHub Pro or make this repository public to enable this feature.",
+  "privacy_rule": "Do not make private enterprise repositories public merely to obtain rulesets."
+}
