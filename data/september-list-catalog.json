@@ -6,7 +6,8 @@
     "branchId": "br-shy-snow-ay9puvn1",
     "database": "neondb",
     "eligibility": "LIST only",
-    "checkoutState": "BLOCKED_PENDING_STRIPE_LIVE_ONBOARDING"
+    "checkoutState": "STRIPE_TEST_MODE_VALIDATION",
+    "liveRevenueBlocker": "STRIPE_LIVE_ACCOUNT_ONBOARDING_INCOMPLETE"
   },
   "products": [
     {
@@ -25,12 +26,10 @@
       "capturedUnits": 840,
       "supplierShippingUsd": 3.99,
       "supplierShippingRemark": "5 - 10 Business Days Shipping From Overseas.",
-      "worlds": {
-        "primary": "Coquette",
-        "crossovers": ["Modern Prep", "Intellectual Woman"]
-      },
+      "worlds": {"primary": "Coquette", "crossovers": ["Modern Prep", "Intellectual Woman"]},
       "useCase": "A crisp collar with enough softness to move from workday structure to layered weekend dressing.",
-      "checkoutUrl": null
+      "checkoutMode": "test",
+      "checkoutUrl": "https://buy.stripe.com/test_7sY5kCfzh2RabMt3jw4ZG02"
     },
     {
       "productKey": "trendsi:402225",
@@ -48,12 +47,10 @@
       "capturedUnits": 80,
       "supplierShippingUsd": 5.99,
       "supplierShippingRemark": "5 - 10 Business Days Shipping From Overseas. ",
-      "worlds": {
-        "primary": "Modern Prep",
-        "crossovers": ["Intellectual Woman", "American Classic"]
-      },
+      "worlds": {"primary": "Modern Prep", "crossovers": ["Intellectual Woman", "American Classic"]},
       "useCase": "The third piece for September: enough structure to finish an outfit without pretending the weather is coat weather.",
-      "checkoutUrl": null
+      "checkoutMode": "test",
+      "checkoutUrl": "https://buy.stripe.com/test_00w3cufzh2RaeYFg6i4ZG03"
     },
     {
       "productKey": "trendsi:402249",
@@ -71,12 +68,10 @@
       "capturedUnits": 600,
       "supplierShippingUsd": 5.99,
       "supplierShippingRemark": "5 - 10 Business Days Shipping From Overseas. ",
-      "worlds": {
-        "primary": "Main Character",
-        "crossovers": ["Soft Life Woman", "City Daughter"]
-      },
+      "worlds": {"primary": "Main Character", "crossovers": ["Soft Life Woman", "City Daughter"]},
       "useCase": "One-and-done dressing for the days when the outfit needs to look deliberate before you have time to think about it.",
-      "checkoutUrl": null
+      "checkoutMode": "test",
+      "checkoutUrl": "https://buy.stripe.com/test_4gM6oGgDl1N603LdYa4ZG04"
     },
     {
       "productKey": "trendsi:402251",
@@ -94,12 +89,10 @@
       "capturedUnits": 400,
       "supplierShippingUsd": 3.99,
       "supplierShippingRemark": "5 - 10 Business Days Shipping From Overseas. ",
-      "worlds": {
-        "primary": "Romantic Heroine",
-        "crossovers": ["Soft Luxury Woman", "Main Character"]
-      },
+      "worlds": {"primary": "Romantic Heroine", "crossovers": ["Soft Luxury Woman", "Main Character"]},
       "useCase": "Wear it together when you want the full effect; split it into two separate outfits when you do not.",
-      "checkoutUrl": null
+      "checkoutMode": "test",
+      "checkoutUrl": "https://buy.stripe.com/test_6oUeVc5YHbnG6s9bQ24ZG05"
     },
     {
       "productKey": "trendsi:400812",
@@ -117,12 +110,10 @@
       "capturedUnits": 1079,
       "supplierShippingUsd": 9.99,
       "supplierShippingRemark": "5 - 10 Business Days Shipping From Overseas. ",
-      "worlds": {
-        "primary": "Curated Maximalist",
-        "crossovers": ["Great Denim Reset", "Heartland Daughter"]
-      },
+      "worlds": {"primary": "Curated Maximalist", "crossovers": ["Great Denim Reset", "Heartland Daughter"]},
       "useCase": "A transitional statement dress with enough visual work already built in that the rest of the outfit can stay simple.",
-      "checkoutUrl": null
+      "checkoutMode": "test",
+      "checkoutUrl": "https://buy.stripe.com/test_cNi7sKdr9fDW5o5aLY4ZG06"
     },
     {
       "productKey": "trendsi:401066",
@@ -140,12 +131,10 @@
       "capturedUnits": 324,
       "supplierShippingUsd": 9.99,
       "supplierShippingRemark": "5 - 10 Business Days Shipping From Overseas.",
-      "worlds": {
-        "primary": "Modern Prep",
-        "crossovers": ["Intellectual Woman"]
-      },
+      "worlds": {"primary": "Modern Prep", "crossovers": ["Intellectual Woman"]},
       "useCase": "The autumn color shift without the full autumn uniform. Pair with the Peter Pan shirt now; add heavier layers later.",
-      "checkoutUrl": null
+      "checkoutMode": "test",
+      "checkoutUrl": "https://buy.stripe.com/test_aFa00i86P3Ve3fXdYa4ZG07"
     }
   ]
 }
