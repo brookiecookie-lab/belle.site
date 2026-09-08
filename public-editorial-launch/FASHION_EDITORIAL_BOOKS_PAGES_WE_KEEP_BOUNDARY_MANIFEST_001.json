@@ -1,0 +1,20 @@
+{
+  "artifact_id": "FASHION-EDITORIAL-BOOKS-PAGES-WE-KEEP-BOUNDARY-DOCTRINE-001",
+  "date": "2026-09-08",
+  "state": "FROZEN / CANONICAL",
+  "artifact": {
+    "filename": "FASHION_EDITORIAL_BOOKS_PAGES_WE_KEEP_BOUNDARY_DOCTRINE_001.md",
+    "bytes": 5759,
+    "sha256": "b821ddd251e5aa44db1b7c3e3ad277c7fcc881e9a0ba88c2f178c9a96176dee6"
+  },
+  "upstream_pages_we_keep_doctrine": {
+    "filename": "THE-PAGES-WE-KEEP-CONTEXT-EVIDENCE-RABBIT-HOLE-DOCTRINE-001.md",
+    "sha256": "6a34d88dde2a81e2b094f7615a25823eaebd1b84d2ccd957bdc99578997b97bd",
+    "manifest_sha256": "21e19f7cfea005a95fcf653b034dd9043e3020888f34d74a16b8992ec6a96e97"
+  },
+  "canonical_boundary": {
+    "fashion_editorial": "1–2 rotating books per month + 3–5 evergreen titles",
+    "standalone_product": "The Pages We Keep",
+    "lite_variant": false
+  }
+}
