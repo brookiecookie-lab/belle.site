@@ -1,0 +1,40 @@
+{
+  "manifest_id": "PUBLIC-EDITORIAL-LAUNCH-001-MANIFEST-001",
+  "date": "2026-09-08",
+  "deployment_record": {
+    "path": "PUBLIC_EDITORIAL_LAUNCH_001_DEPLOYMENT_RECORD_001.md",
+    "bytes": 4462,
+    "sha256": "c121490ded111ca7e55ec35dbff3835f120a16c30afd919efb032329dd4b8be0"
+  },
+  "site_html": {
+    "path": "deploy-bundle.html",
+    "bytes": 18263,
+    "sha256": "ff7592af0bf288f26251f4c189637c24d66aac47218a14f8dfbf33625e073958"
+  },
+  "function_source_v2": {
+    "path": "index.mjs",
+    "bytes": 30652,
+    "sha256": "77a065d98a9ec14e54df0fb9f0aaa312dc94aa17c795e48a45b9889834e31397"
+  },
+  "deployment_zip_v2": {
+    "path": "publicsite-v2.zip",
+    "bytes": 12679,
+    "sha256": "8ee41a8671446f4dc0c41e33700cd5da9452f2dfc96b8fe3ecdd167f77bc6132"
+  },
+  "github": {
+    "repository": "brookiecookie-lab/belle.site",
+    "branch": "public-editorial-launch-001",
+    "bundle_commit": "9d61807460a2958d23654c1a26075a214fda9427"
+  },
+  "neon": {
+    "project_id": "red-band-42667338",
+    "branch_id": "br-shy-snow-ay9puvn1",
+    "database": "neondb",
+    "function_slug": "publicsite",
+    "deployment_id": 2,
+    "status": "completed",
+    "invocation_url": "https://br-shy-snow-ay9puvn1-publicsite.compute.c-5.us-east-2.aws.neon.tech/"
+  },
+  "payment_state": "STRIPE_DEFERRED_REQUEST_RESERVE_ONLY",
+  "external_browser_acceptance": "OPEN_RUNTIME_NETWORK_LIMITATION"
+}
