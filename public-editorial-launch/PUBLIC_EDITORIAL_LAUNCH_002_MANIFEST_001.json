@@ -1,0 +1,32 @@
+{
+  "artifact_id": "PUBLIC-EDITORIAL-LAUNCH-002-CANONICAL-NAME-CORRECTION-001",
+  "date": "2026-09-08",
+  "canonical_product_name": "The Pages We Keep",
+  "supersedes": [
+    "Marginalia Society",
+    "The Words We Keep"
+  ],
+  "public_route": "#/digital/the-pages-we-keep",
+  "waitlist_product_key": "THE_PAGES_WE_KEEP",
+  "neon": {
+    "function": "publicsite",
+    "deployment_id": 3,
+    "status": "ACTIVE / COMPLETED",
+    "url": "https://br-shy-snow-ay9puvn1-publicsite.compute.c-5.us-east-2.aws.neon.tech/"
+  },
+  "bytes": {
+    "deploy_bundle": {
+      "size": 18244,
+      "sha256": "52cbc3b647b4b4f3be114b7a8bb7f250ddff1ee7ed668a258842af593474626e"
+    },
+    "function_source": {
+      "size": 30628,
+      "sha256": "b907f59c1fe154d7bc1891a5b62ec2b7baab25b116b9bda4dff6274835e60806"
+    },
+    "deployment_zip": {
+      "size": 12738,
+      "sha256": "f91182e335bb000152e48eead92acbe4cc2f99422a2e9d2a87ef8e12009233b7"
+    }
+  },
+  "historical_artifacts_immutable": true
+}
