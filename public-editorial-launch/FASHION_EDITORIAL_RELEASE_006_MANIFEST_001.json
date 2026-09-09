@@ -1,0 +1,33 @@
+{
+  "artifact_id": "FASHION-EDITORIAL-RELEASE-006",
+  "date": "2026-09-09",
+  "state": "FROZEN / DEPLOYED",
+  "neon": {
+    "function": "publicsite",
+    "deployment_id": 7,
+    "status": "ACTIVE / COMPLETED",
+    "url": "https://br-shy-snow-ay9puvn1-publicsite.compute.c-5.us-east-2.aws.neon.tech/"
+  },
+  "artifacts": {
+    "FASHION_EDITORIAL_RELEASE_006.html": {
+      "bytes": 34364,
+      "sha256": "84b8f2f5d412962a10a3643371be62b7412d2f1532522dd50455748442b031e5"
+    },
+    "publicsite-release-006/index.mjs": {
+      "bytes": 39981,
+      "sha256": "be1f00dc6c81b60f101a4a3b302329766d8cc1f4b2b2c706a243b6703cbe855f"
+    },
+    "publicsite-release-006.zip": {
+      "bytes": 14509,
+      "sha256": "3dc9d100990cd61cb4f57ddf240f2f0f2491b8aec870633570cba3063afcea15"
+    },
+    "FASHION_EDITORIAL_RECURRING_LENS_AMAZING_GRACEFULNESS_001.md": {
+      "bytes": 4372,
+      "sha256": "653e825d8109ff853b38dd0bce34f3aea7bc14faa6c284ab932fa3c61b7f2d0e"
+    },
+    "FASHION_EDITORIAL_RELEASE_006_DEPLOYMENT_RECORD_001.md": {
+      "bytes": 3524,
+      "sha256": "df899ff98227004ae206e27ba4b8fd2690314920c56a4531b93164529c758e19"
+    }
+  }
+}
