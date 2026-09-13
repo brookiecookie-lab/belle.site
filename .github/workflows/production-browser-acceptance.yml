@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      BASE_URL: https://br-shy-snow-ay9puvn1-publicsite.compute.c-5.us-east-2.aws.neon.tech
+      BASE_URL: https://br-shy-snow-ay9puvn1-publicsitefix.compute.c-5.us-east-2.aws.neon.tech
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,7 +38,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: release-010-production-browser-acceptance
+          name: release-010-isolated-recovery-browser-acceptance
           path: browser-acceptance/
           if-no-files-found: error
           retention-days: 30
