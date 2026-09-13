@@ -1,0 +1,188 @@
+name: Production browser acceptance
+
+on:
+  push:
+    branches: [public-editorial-launch-001]
+    paths:
+      - .github/workflows/production-browser-acceptance.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production-browser-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      BASE_URL: https://br-shy-snow-ay9puvn1-publicsite.compute.c-5.us-east-2.aws.neon.tech
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Run production browser acceptance
+        shell: bash
+        run: |
+          mkdir -p browser-acceptance/screenshots
+          cat > /tmp/acceptance.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const BASE = process.env.BASE_URL.replace(/\/$/, '');
+          const results = [];
+          const failures = [];
+          const note = (name, ok, detail='') => {
+            results.push({ name, ok, detail });
+            if (!ok) failures.push(`${name}: ${detail}`);
+            console.log(`${ok ? 'PASS' : 'FAIL'} ${name}${detail ? ` — ${detail}` : ''}`);
+          };
+          const assert = (name, condition, detail='') => note(name, Boolean(condition), detail);
+
+          async function raw(path, expectedStatus=200) {
+            const r = await fetch(BASE + path, { redirect: 'manual' });
+            const text = await r.text();
+            assert(`HTTP ${path}`, r.status === expectedStatus, `status=${r.status}, expected=${expectedStatus}`);
+            return { r, text };
+          }
+
+          // Independent network / HTTP assertions against the real production hostname.
+          const health = await raw('/health');
+          let healthJson = {};
+          try { healthJson = JSON.parse(health.text); } catch {}
+          assert('health version', healthJson.version === '10-crawl-discovery', `version=${healthJson.version}`);
+          assert('health graph counts', String(healthJson.books) === '10' && String(healthJson.recommendation_edges) === '25' && String(healthJson.world_routes) === '39', JSON.stringify(healthJson));
+          assert('health production branch', healthJson.branch_id === 'br-shy-snow-ay9puvn1', `branch=${healthJson.branch_id}`);
+          assert('health Release 010 flags', healthJson.rss === true && healthJson.breadcrumbs === true && healthJson.server_rendered_editorial === true && healthJson.crawlable_internal_links === true, JSON.stringify(healthJson));
+
+          const journal = await raw('/journal/the-intellectual-woman');
+          assert('journal server-rendered h1', /<h1>[^<]*Intellectual Woman[^<]*<\/h1>/i.test(journal.text));
+          assert('journal server-rendered breadcrumb', journal.text.includes('aria-label="Breadcrumb"'));
+          assert('journal server-rendered explore-next', journal.text.includes('aria-label="Explore next"'));
+          assert('journal clean internal links', !journal.text.includes('href="#/journal') && !journal.text.includes('href="#/fashion'));
+          assert('journal breadcrumb structured data', journal.text.includes('BreadcrumbList'));
+          assert('journal self canonical', journal.text.includes(`rel="canonical" href="${BASE}/journal/the-intellectual-woman"`));
+
+          const hailey = await raw('/fashion/hailey-bieber-outfit-was-the-message');
+          assert('fashion server-rendered h1', /<h1>[^<]*Hailey Bieber[^<]*<\/h1>/i.test(hailey.text));
+          assert('fashion server-rendered breadcrumb', hailey.text.includes('aria-label="Breadcrumb"'));
+          assert('fashion server-rendered explore-next', hailey.text.includes('aria-label="Explore next"'));
+          assert('fashion Article structured data', hailey.text.includes('"@type":"Article"'));
+          assert('fashion self canonical', hailey.text.includes(`rel="canonical" href="${BASE}/fashion/hailey-bieber-outfit-was-the-message"`));
+
+          const dollyFashion = await raw('/fashion/dolly-built-her-own-image');
+          assert('Dolly fashion links cleanly to Books', dollyFashion.text.includes('href="/books/behind-the-seams-dolly-parton"'));
+
+          const books = await raw('/books');
+          assert('Books clean canonical', books.text.includes(`rel="canonical" href="${BASE}/books"`));
+          assert('Books list contains Dolly', books.text.includes('Behind the Seams'));
+
+          const dollyBook = await raw('/books/behind-the-seams-dolly-parton');
+          assert('Dolly book structured data', dollyBook.text.includes('"@type":"Book"'));
+          assert('Dolly book title', dollyBook.text.includes('Behind the Seams'));
+
+          const sitemap = await raw('/sitemap.xml');
+          assert('sitemap contains Journal', sitemap.text.includes(`${BASE}/journal/the-intellectual-woman`));
+          assert('sitemap contains Fashion', sitemap.text.includes(`${BASE}/fashion/hailey-bieber-outfit-was-the-message`));
+          assert('sitemap contains Books', sitemap.text.includes(`${BASE}/books/behind-the-seams-dolly-parton`));
+          assert('sitemap excludes Cardi while archive-in-development', !sitemap.text.includes('/fashion/cardi-holding-court'));
+
+          const feed = await raw('/feed.xml');
+          assert('RSS content type', (feed.r.headers.get('content-type') || '').includes('application/rss+xml'), feed.r.headers.get('content-type') || '');
+          assert('RSS contains Journal', feed.text.includes('/journal/the-intellectual-woman'));
+          assert('RSS contains published Fashion', feed.text.includes('/fashion/hailey-bieber-outfit-was-the-message'));
+          assert('RSS excludes Cardi while archive-in-development', !feed.text.includes('/fashion/cardi-holding-court'));
+
+          const robots = await raw('/robots.txt');
+          assert('robots advertises sitemap', robots.text.includes(`Sitemap: ${BASE}/sitemap.xml`));
+
+          const cardi = await raw('/fashion/cardi-holding-court');
+          assert('Cardi X-Robots-Tag noindex', (cardi.r.headers.get('x-robots-tag') || '').toLowerCase().includes('noindex'), cardi.r.headers.get('x-robots-tag') || '');
+          assert('Cardi meta robots noindex', /<meta name="robots" content="noindex,follow">/.test(cardi.text));
+
+          const legacy = await raw('/journal/amazing-how-they-love-you-when-youre-gone', 301);
+          assert('legacy 301 target', legacy.r.headers.get('location') === `${BASE}/journal/amazing-gracefulness`, legacy.r.headers.get('location') || '');
+
+          const missing = await raw('/journal/this-page-does-not-exist', 404);
+          assert('unknown editorial X-Robots noindex', (missing.r.headers.get('x-robots-tag') || '').toLowerCase().includes('noindex'), missing.r.headers.get('x-robots-tag') || '');
+
+          // Real Chromium render, DOM, console, navigation, and screenshots.
+          const browser = await chromium.launch({ headless: true });
+          const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+          const page = await context.newPage();
+          const browserErrors = [];
+          page.on('pageerror', err => browserErrors.push(`pageerror: ${err.message}`));
+          page.on('console', msg => { if (msg.type() === 'error') browserErrors.push(`console: ${msg.text()}`); });
+
+          const visualRoutes = [
+            ['home', '/'],
+            ['journal-intellectual-woman', '/journal/the-intellectual-woman'],
+            ['fashion-hailey', '/fashion/hailey-bieber-outfit-was-the-message'],
+            ['books-dolly', '/books/behind-the-seams-dolly-parton']
+          ];
+
+          for (const [name, path] of visualRoutes) {
+            const response = await page.goto(BASE + path, { waitUntil: 'networkidle', timeout: 45000 });
+            assert(`Chromium ${path} status`, response && response.status() === 200, `status=${response?.status()}`);
+            const title = await page.title();
+            assert(`Chromium ${path} title`, title && title.length > 3, title);
+            const bodyText = await page.locator('body').innerText();
+            assert(`Chromium ${path} rendered body`, bodyText.trim().length > 100, `chars=${bodyText.trim().length}`);
+            await page.screenshot({ path: `browser-acceptance/screenshots/${name}.png`, fullPage: true });
+          }
+
+          // Click-test a clean internal link from Dolly Fashion to the Books record.
+          await page.goto(BASE + '/fashion/dolly-built-her-own-image', { waitUntil: 'networkidle', timeout: 45000 });
+          const dollyLink = page.locator('a[href="/books/behind-the-seams-dolly-parton"]').first();
+          assert('Chromium Dolly→Books link visible', await dollyLink.count() > 0);
+          if (await dollyLink.count()) {
+            await Promise.all([
+              page.waitForURL('**/books/behind-the-seams-dolly-parton', { timeout: 30000 }),
+              dollyLink.click()
+            ]);
+            assert('Chromium Dolly→Books navigation', page.url() === `${BASE}/books/behind-the-seams-dolly-parton`, page.url());
+          }
+
+          assert('Chromium uncaught errors', browserErrors.length === 0, browserErrors.join(' | ') || 'none');
+          await browser.close();
+
+          const summary = {
+            base_url: BASE,
+            executed_at: new Date().toISOString(),
+            passed: failures.length === 0,
+            assertion_count: results.length,
+            failure_count: failures.length,
+            failures,
+            results,
+            browser_errors: browserErrors
+          };
+          fs.writeFileSync('browser-acceptance/acceptance-report.json', JSON.stringify(summary, null, 2));
+          fs.writeFileSync('browser-acceptance/acceptance-report.txt', [
+            `Production Browser Acceptance: ${summary.passed ? 'PASS' : 'FAIL'}`,
+            `URL: ${BASE}`,
+            `Assertions: ${summary.assertion_count}`,
+            `Failures: ${summary.failure_count}`,
+            ...results.map(x => `${x.ok ? 'PASS' : 'FAIL'} | ${x.name}${x.detail ? ` | ${x.detail}` : ''}`)
+          ].join('\n') + '\n');
+
+          if (failures.length) process.exit(1);
+          EOF
+          node /tmp/acceptance.mjs
+
+      - name: Upload browser acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-010-production-browser-acceptance
+          path: browser-acceptance/
+          if-no-files-found: error
+          retention-days: 30
