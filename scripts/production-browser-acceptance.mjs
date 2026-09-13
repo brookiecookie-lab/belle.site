@@ -23,7 +23,7 @@ fs.mkdirSync('browser-acceptance/screenshots', { recursive: true });
 const health = await raw('/health');
 let healthJson = {};
 try { healthJson = JSON.parse(health.text); } catch {}
-assert('health version', healthJson.version === '10-crawl-discovery', `version=${healthJson.version}`);
+assert('health version', healthJson.version === '10r2-books-schema-reconciled', `version=${healthJson.version}`);
 assert('health graph counts', String(healthJson.books) === '10' && String(healthJson.recommendation_edges) === '25' && String(healthJson.world_routes) === '39', JSON.stringify(healthJson));
 assert('health production branch', healthJson.branch_id === 'br-shy-snow-ay9puvn1', `branch=${healthJson.branch_id}`);
 assert('health Release 010 flags', healthJson.rss === true && healthJson.breadcrumbs === true && healthJson.server_rendered_editorial === true && healthJson.crawlable_internal_links === true, JSON.stringify(healthJson));
@@ -50,9 +50,26 @@ const books = await raw('/books');
 assert('Books clean canonical', books.text.includes(`rel="canonical" href="${BASE}/books"`));
 assert('Books list contains Dolly', books.text.includes('Behind the Seams'));
 
+const booksApi = await raw('/api/books');
+let booksApiJson = {};
+try { booksApiJson = JSON.parse(booksApi.text); } catch {}
+assert('Books API has 10 books', Array.isArray(booksApiJson.books) && booksApiJson.books.length === 10, `count=${booksApiJson.books?.length}`);
+assert('Books API has 6 shelves', Array.isArray(booksApiJson.shelves) && booksApiJson.shelves.length === 6, `count=${booksApiJson.shelves?.length}`);
+
 const dollyBook = await raw('/books/behind-the-seams-dolly-parton');
 assert('Dolly book structured data', dollyBook.text.includes('"@type":"Book"'));
 assert('Dolly book title', dollyBook.text.includes('Behind the Seams'));
+
+const dollyApi = await raw('/api/books/behind-the-seams-dolly-parton');
+let dollyApiJson = {};
+try { dollyApiJson = JSON.parse(dollyApi.text); } catch {}
+assert('Dolly API archetypes restored', Array.isArray(dollyApiJson.worlds) && dollyApiJson.worlds.length >= 4, `count=${dollyApiJson.worlds?.length}`);
+
+const romantasyApi = await raw('/api/worlds/romantasy-commerce');
+let romantasyJson = {};
+try { romantasyJson = JSON.parse(romantasyApi.text); } catch {}
+const love = Array.isArray(romantasyJson.books) ? romantasyJson.books.find(x => x.canonical_slug === 'the-love-hypothesis') : null;
+assert('Love Hypothesis NOT_ROMANTASY guard restored', love?.explicit_exclusion === 'NOT_ROMANTASY', `explicit_exclusion=${love?.explicit_exclusion}`);
 
 const sitemap = await raw('/sitemap.xml');
 assert('sitemap contains Journal', sitemap.text.includes(`${BASE}/journal/the-intellectual-woman`));
