@@ -1,0 +1,37 @@
+name: Release 011 runtime diagnostic v2
+
+on:
+  push:
+    branches: [public-editorial-launch-001]
+    paths:
+      - '.github/workflows/release011-runtime-diagnostic-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-runtime-assets:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Invoke isolated diagnostic function
+        run: |
+          mkdir -p diagnostic
+          curl --fail --show-error --silent \
+            'https://br-shy-snow-ay9puvn1-publicsitefix.compute.c-5.us-east-2.aws.neon.tech/' \
+            -o diagnostic/release011-runtime-diagnostic.json
+          python - <<'PY'
+          import json
+          p='diagnostic/release011-runtime-diagnostic.json'
+          j=json.load(open(p))
+          print('diagnostic keys:', ', '.join(j.keys()))
+          for k,v in j.items():
+              print(k, 'bytes=', v.get('bytes'), 'source_bytes=', v.get('source_bytes'), 'refs=', v.get('refs'), 'guards=', v.get('guards'))
+          PY
+      - name: Upload diagnostic evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: release011-runtime-diagnostic-v2
+          path: diagnostic/
+          if-no-files-found: error
+          retention-days: 30
