@@ -1,0 +1,15 @@
+name: R011 Diagnostic Invoke
+on:
+  push:
+    branches: [public-editorial-launch-001]
+    paths:
+      - '.github/workflows/r011-diagnostic.yml'
+jobs:
+  invoke:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Invoke isolated diagnostic function
+        run: |
+          set -euo pipefail
+          curl --fail-with-body --silent --show-error --max-time 60 \
+            'https://br-shy-snow-ay9puvn1-publicsitefix.compute.c-5.us-east-2.aws.neon.tech/'
