@@ -1,0 +1,33 @@
+name: Release 020 R2 Isolated Browser Acceptance
+on:
+  push:
+    branches: [public-editorial-launch-001]
+    paths:
+      - 'scripts/r020-browser-acceptance.mjs'
+      - '.github/workflows/r020-browser-acceptance.yml'
+  workflow_dispatch:
+jobs:
+  browser-acceptance:
+    runs-on: ubuntu-24.04
+    env:
+      BASE_URL: https://br-shy-snow-ay9puvn1-publicsitefix.compute.c-5.us-east-2.aws.neon.tech
+      OUT_DIR: browser-acceptance-r020
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Run Release 020 acceptance
+        run: node scripts/r020-browser-acceptance.mjs
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-020-isolated-browser-acceptance
+          path: browser-acceptance-r020/
+          if-no-files-found: error
+          retention-days: 30
