@@ -53,12 +53,12 @@ const oldBrown=await raw('/worlds/brown-is-the-new-neutral',301);assert('Brown l
 
 const discovery=[
  ['/fashion/which-owens-woman-are-you-dressing-like-this-fall','Which Owens Woman Are You Dressing Like This Fall?','A lane is a door, not a diagnosis'],
- ['/worlds/a-certain-kind-of-magic','A Certain Kind of Magic','Four women. Four ways into the story.'],
+ ['/worlds/a-certain-kind-of-magic','A Certain Kind of Magic','Four women can share one family story without sharing one closet.'],
  ['/worlds/a-certain-kind-of-magic/sally','Sally Owens','Competence with an inner life.'],
  ['/worlds/a-certain-kind-of-magic/gillian','Gillian Owens','Beautiful trouble.'],
  ['/worlds/a-certain-kind-of-magic/kylie','Kylie Owens','Love before cynicism.'],
  ['/worlds/a-certain-kind-of-magic/antonia','Antonia Owens','Science meets inheritance.'],
- ['/worlds/a-certain-kind-of-magic/shop','Shop A Certain Kind of Magic','Owens World > sequel merch'],
+ ['/worlds/a-certain-kind-of-magic/shop','Shop A Certain Kind of Magic','Owens World &gt; sequel merch'],
  ['/worlds/a-certain-kind-of-magic/autumn-after-dark','Autumn After Dark','without turning the world into a costume shop']
 ];
 for(const [p,title,needle] of discovery){const x=await raw(p);assert(`${p} title`,x.text.includes(title),title);assert(`${p} content`,x.text.includes(needle),needle);assert(`${p} canonical`,canonical(x.text,p));}
