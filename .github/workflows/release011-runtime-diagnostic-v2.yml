@@ -14,21 +14,24 @@ jobs:
   inspect-runtime-assets:
     runs-on: ubuntu-24.04
     steps:
-      - name: Invoke isolated diagnostic function
+      - name: Export isolated runtime patch sources
         run: |
           mkdir -p diagnostic
           curl --fail --show-error --silent \
             'https://br-shy-snow-ay9puvn1-publicsitefix.compute.c-5.us-east-2.aws.neon.tech/' \
-            -o diagnostic/release011-runtime-diagnostic.json
+            -o diagnostic/release-patch-sources.json
           python - <<'PY'
           import json
-          p='diagnostic/release011-runtime-diagnostic.json'
+          p='diagnostic/release-patch-sources.json'
           j=json.load(open(p))
-          print('diagnostic keys:', ', '.join(j.keys()))
-          for k,v in j.items():
-              print(k, 'bytes=', v.get('bytes'), 'source_bytes=', v.get('source_bytes'), 'refs=', v.get('refs'), 'guards=', v.get('guards'))
+          print('ok=',j.get('ok'))
+          for k,v in (j.get('assets') or {}).items():
+              print(k,'compressed=',v.get('compressed_bytes'),'source=',v.get('source_bytes'),'source_sha=',v.get('source_sha256'))
+          if not j.get('ok'):
+              raise SystemExit(j)
           PY
       - name: Upload diagnostic evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: release011-runtime-diagnostic-v2
