@@ -1,0 +1,25 @@
+{
+  "artifact_id": "ACKOE-PUBLIC-VNEXT-MISSING-PAGES-001",
+  "created_date": "2026-09-15",
+  "protected_exclusions": [
+    "homepage",
+    "canonical PDP"
+  ],
+  "records": [
+    {"path":"README.md","bytes":1848,"sha256":"4ec5176818431f710435816bed0a6aa2c37d5d5ae53a59a354715707e9b89c04"},
+    {"path":"assets/site-config.js","bytes":299,"sha256":"28090940f6e7822c7f303d3f515e7f94386b68bc5e8d7b5c01559815e3630a29"},
+    {"path":"assets/site.css","bytes":12766,"sha256":"fedc421668820c07c700b855f5235705b08ffdc7f3617745e0c4a41bc7850d5b"},
+    {"path":"assets/site.js","bytes":5073,"sha256":"764c68d64ed3903185431b3d602aeb64f4e1c99ffa2f4376fd883e2797b29fc9"},
+    {"path":"belle.html","bytes":5667,"sha256":"53f153150b95fd180eb56a1a66121d5b36dbb18f21f63b44e3207a3c595b6d44"},
+    {"path":"boards.html","bytes":4466,"sha256":"5fbfd23abdda86857cb45d9266a13e7eb4ee436614c05d5cf559dbcf00f6f827"},
+    {"path":"cart.html","bytes":3782,"sha256":"081dd8a0aac9cdada38dc7a3f9c1fdfcb7f9e568f4627ca3aa415dedd4888657"},
+    {"path":"checkout.html","bytes":4180,"sha256":"d81c6c618098cdb1ee4b58b36d0fbb88262d354dd80350cb10053184f85a0b9c"},
+    {"path":"digital-products.html","bytes":4238,"sha256":"2b3e1e820b857ae2853e6c055fda53e299978eeda1582426473d71f105e39c3d"},
+    {"path":"intelligence.html","bytes":6816,"sha256":"25907b79014d441e8861d57e0e0d6e7ae92aee29fa04fb786ee1e4393310d704"},
+    {"path":"make-this-me.html","bytes":6108,"sha256":"c126a107fda2ff159fec4946de59ab2cef2076f5932c92e0b312de9483ae3393"},
+    {"path":"pdp-route-contract.html","bytes":3385,"sha256":"8b3da27886e84deee7b9a0ad8b3ccc938deb3b4afc64eae7d52ac709af0b2184"},
+    {"path":"search.html","bytes":3692,"sha256":"785c68113c62ca894a21978c4ead9752cdb1fc7fe9883f541200e62a1abc1448"},
+    {"path":"shop.html","bytes":7729,"sha256":"e0786ebb2c7c67e6abd98f5415f935fe8c73a6af8cb5d32adcb1ccc3ecf14e3f"},
+    {"path":"worlds.html","bytes":13766,"sha256":"e5e2d05feaaecee1a176a7178c56c8646c4757a6dfbd1f9616b9dabdfb63be58"}
+  ]
+}
